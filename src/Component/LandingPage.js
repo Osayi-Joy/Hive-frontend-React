@@ -1,5 +1,8 @@
 import React from 'react'
 import HeaderBar from './HeaderBar'
+import { About } from './About'
+import { Testimonial } from './Testimonial'
+import { Footer } from './Footer'
 import homeImage from '../Assets/home-image.svg'
 
 const LandingPage = () => {
@@ -10,12 +13,12 @@ const LandingPage = () => {
             <div className="text-section">
             <h1 className="primay-heading">Leave the cleaning to us, and reclaim your time for what matters most</h1>
             <p className="primary-text">Clean spaces, happy faces - let us do the dirty work for you!</p>
-            <div className="for-button">
+            <div className="about-buttons-container">
                 <button className="secondary-button">
-                    Sign as a cleaner
+                    Sign in as a Doer
                 </button>
                 <button className="primary-button">
-                    Sign as a client
+                    Sign in as a Tasker
                 </button>
             </div>
             </div>
@@ -25,6 +28,9 @@ const LandingPage = () => {
             <img src={homeImage} alt="home image Hive" />
         </div>
     </div>
+    <About />
+    <Testimonial />
+    <Footer />
   </div>;
 }
 
