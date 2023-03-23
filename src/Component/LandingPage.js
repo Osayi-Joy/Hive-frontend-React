@@ -10,18 +10,21 @@ const LandingPage = () => {
     <HeaderBar />
     <div className="home-banner-container">
         <div className="home-text-section">
-            <div className="text-section">
-            <h1 className="primay-heading">Leave the cleaning to us, and reclaim your time for what matters most</h1>
-            <p className="primary-text">Clean spaces, happy faces - let us do the dirty work for you!</p>
-            <div className="about-buttons-container">
-                <button className="secondary-button">
-                    Sign in as a Doer
-                </button>
-                <button className="primary-button">
-                    Sign in as a Tasker
-                </button>
+            <div className="home-text-section-main">
+                <div className="text-section">
+                <h1 className="primay-heading">Leave the cleaning to us, and reclaim your time for what matters most</h1>
+                <p className="primary-text">Clean spaces, happy faces - let us do the dirty work for you!</p>
+                <div className="about-buttons-container">
+                    <button className="secondary-button">
+                        Sign in as a Doer
+                    </button>
+                    <button className="primary-button">
+                        Sign in as a Tasker
+                    </button>
+                </div>
+                </div>
             </div>
-            </div>
+            
             
         </div>
         <div classNamae="home-image-section">

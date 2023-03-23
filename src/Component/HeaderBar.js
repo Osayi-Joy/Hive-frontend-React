@@ -1,6 +1,5 @@
 import React from 'react';
 import Logo from '../Assets/logo.svg';
-import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -42,7 +41,7 @@ const HeaderBar = () => {
   
 return(
     <nav>
-        <div className="logo">
+        <div className="nav-logo-container">
             <img src={Logo} alt="Hive logo navebar" />
         </div>
         <div className="navbar-links-container">
