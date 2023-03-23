@@ -27,17 +27,6 @@ export const Testimonial = () => {
             </div>
 
             <h2>John Doe</h2>
-            {/* <img src={ProfilePic} alt="profile picture for hive users" />
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit amet aut obcaecati dicta 
-                ipsum quam commodi asperiores fugit voluptas nihil!</p>
-
-            <div className='testimonial-stars-container'>
-                <BsStarFill />
-                <BsStarFill />
-                <BsStarFill />
-                <BsStarFill />
-                <BsStarFill />
-            </div> */}
         </div>
 
     </div>
