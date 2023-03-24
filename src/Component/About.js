@@ -1,5 +1,6 @@
 import React from 'react'
 
+//new addition
 export const About = () => {
   return <div className='about-section-container'>
     <div className='about-section-doer'>

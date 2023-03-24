@@ -5,6 +5,7 @@ import { Testimonial } from './Testimonial'
 import { Footer } from './Footer'
 import homeImage from '../Assets/home-image.svg'
 
+//new addition
 const LandingPage = () => {
     return <div className="home-container">
     <HeaderBar />

@@ -5,7 +5,7 @@ import Twitter from '../Assets/Twitter.svg'
 import YouTube from '../Assets/Youtube.svg'
 
 
-
+//new addition
 export const Footer = () => {
   return (
     <div className="footer-container">

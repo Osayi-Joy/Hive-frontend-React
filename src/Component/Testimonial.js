@@ -25,7 +25,6 @@ export const Testimonial = () => {
                 <BsStarFill />
                 <BsStarFill />
             </div>
-
             <h2>John Doe</h2>
         </div>
 

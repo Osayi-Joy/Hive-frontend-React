@@ -14,6 +14,8 @@ import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 const HeaderBar = () => {
+
+  //new addition
   // for navbar responsive
   const [open, setOpenMenu] = React.useState(false)
   const menuOptions = [
