@@ -1,7 +1,5 @@
 import React from 'react'
 import HeaderBar from './HeaderBar'
-import { About } from './About'
-import { Testimonial } from './Testimonial'
 import { Footer } from './Footer'
 import homeImage from '../Assets/home-image.svg'
 
@@ -32,8 +30,6 @@ const LandingPage = () => {
             <img src={homeImage} alt="home image Hive" />
         </div>
     </div>
-    <About />
-    <Testimonial />
     <Footer />
   </div>;
 }
