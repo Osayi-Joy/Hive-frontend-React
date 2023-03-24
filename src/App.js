@@ -1,9 +1,12 @@
 import React from 'react';
+import LandingPage from './Component/LandingPage';
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>taskrabit</h1>
+      <LandingPage />
+      
     </div>
   );
 }
