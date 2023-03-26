@@ -49,9 +49,9 @@ return(
         <div className="navbar-links-container">
             <a href="/">Home</a>
             <a href="/about">About</a>
-            <a href="/signin">Sign In</a>
+            {/* <a href="/signin">Sign In</a> */}
 
-            <button className="primary-button">Sign Up</button>
+            <button className="primary-button">Login</button>
         </div>
         <div className="navbar-menu-container">
             <HiOutlineBars3 onClick={() => setOpenMenu(true)} />

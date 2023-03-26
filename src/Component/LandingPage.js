@@ -15,10 +15,10 @@ const LandingPage = () => {
                 <p className="primary-text">Clean spaces, happy faces - let us do the dirty work for you!</p>
                 <div className="about-buttons-container">
                     <button className="secondary-button">
-                        Sign in as a Doer
+                        Sign up as a Doer
                     </button>
                     <button className="primary-button">
-                        Sign in as a Tasker
+                        Sign up as a Tasker
                     </button>
                 </div>
                 </div>
@@ -26,7 +26,7 @@ const LandingPage = () => {
             
             
         </div>
-        <div classNamae="home-image-section">
+        <div className="home-image-section">
             <img src={homeImage} alt="home image Hive" />
         </div>
     </div>
