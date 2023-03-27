@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import Logo from '../Assets/logo.svg';
 import { HiOutlineBars3 } from "react-icons/hi2";
 import Box from "@mui/material/Box";
@@ -15,8 +16,6 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 const HeaderBar = () => {
 
-  //new addition
-  // for navbar responsive
   const [open, setOpenMenu] = React.useState(false)
   const menuOptions = [
       {
@@ -32,12 +31,12 @@ const HeaderBar = () => {
       {
           name: 'Sign In',
           icon: <LoginIcon />,
-          link: '/signin',
+          link: '/login',
       },
       {
           name: 'Sign Up',
           icon: <LogoutIcon />,
-          link: '/signup',
+          link: '/register',
       },
   ];
   
@@ -49,9 +48,10 @@ return(
         <div className="navbar-links-container">
             <a href="/">Home</a>
             <a href="/about">About</a>
-            {/* <a href="/signin">Sign In</a> */}
 
-            <button className="primary-button">Login</button>
+            <Link to={'/login'}>
+              <button className="primary-button">Login</button>
+            </Link>
         </div>
         <div className="navbar-menu-container">
             <HiOutlineBars3 onClick={() => setOpenMenu(true)} />

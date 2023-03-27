@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import HeaderBar from './HeaderBar'
 import { Footer } from './Footer'
 import homeImage from '../Assets/home-image.svg'
@@ -14,12 +15,16 @@ const LandingPage = () => {
                 <h1 className="primay-heading">Leave the cleaning to us, and reclaim your time for what matters most</h1>
                 <p className="primary-text">Clean spaces, happy faces - let us do the dirty work for you!</p>
                 <div className="about-buttons-container">
-                    <button className="secondary-button">
-                        Sign up as a Doer
-                    </button>
-                    <button className="primary-button">
-                        Sign up as a Tasker
-                    </button>
+                    <Link to={'/register'}>
+                        <button className="secondary-button">
+                            Sign up as a Doer
+                        </button>
+                    </Link>
+                    <Link to={'/register'}>
+                        <button className="primary-button">
+                            Sign up as a Tasker
+                        </button>
+                    </Link>
                 </div>
                 </div>
             </div>
