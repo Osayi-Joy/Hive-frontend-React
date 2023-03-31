@@ -24,7 +24,7 @@ function App() {
           <Route path='/login' Component={Login}></Route>
           <Route path='/confirm-email' Component={Comfirm}></Route>
           <Route path='/view' Component={view}></Route>
-          <Route path='/reset-password' Component={Reset}></Route>
+          <Route path='/reset-password/:token' Component={Reset}></Route>
           <Route path='/forget-password' Component={ForgetPassword}></Route>
           <Route path='/wallet' Component={wallet}></Route>
           <Route path='/dashboard' Component={dashboard}></Route>
