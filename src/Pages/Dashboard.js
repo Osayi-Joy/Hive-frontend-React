@@ -1,8 +1,10 @@
+import HeaderBar from "../Component/HeaderBar";
+import SearchBar from "../Component/searchBar";
+import "../";import "../Pages/CSS/dashboard.css";
 const dashboard = () => {
     return <div className="dashboard-container">
-        <div>
-            <h2>welcome to home page</h2>
-        </div>
+        <HeaderBar />
+        <SearchBar />
     </div>
 }
  
