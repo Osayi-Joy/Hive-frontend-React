@@ -308,6 +308,7 @@
     justify-content: center;
     height: 100vh;
     border: 1px solid black;
+    margin: auto;
   }
   
   button {

@@ -7,7 +7,7 @@ function Register () {
 
     const handleClick = () => {
         // navigate user to the email verification page
-        navigate('/emailVerification');
+        navigate('/emailVerificationPage');
     };
 
         return (
