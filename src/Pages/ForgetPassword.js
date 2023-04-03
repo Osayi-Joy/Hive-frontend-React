@@ -1,44 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Footer } from "../Component/Footer";
 import HeaderBar from "../Component/HeaderBar";
-import Form from "../utilities/Forms";
+import PasswordService from "../service/PasswordService";
+
 
 const ForgetPassword = () => {
-  const [email, setEmail] = useState("");
-  const [validate, setValidate] = useState({});
+  const [email, setEmail] = useState({ email: "" });
+  const [validate, setValidate] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [apiResponse, setApiResponse] = useState(null);
 
-  const validateforgotPassword = () => {
-    let isValid = true;
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail({ ...email, [e.target.name]: value });
 
-    let validator = Form.validator({
-      email: {
-        value: email,
-        isRequired: true,
-        isEmail: true,
-      },
-    });
-
-    if (validator !== null) {
-      setValidate({
-        validate: validator.errors,
-      });
-
-      isValid = false;
-    }
-    return isValid;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setValidate(emailRegex.test(e.target.value));
   };
 
-  const forgotPassword = (e) => {
-    e.preventDefault();
+  const option = {
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  };
 
-    const validate = validateforgotPassword();
-
-    if (validate) {
-      alert("Reset password link is sent to " + email);
-      setValidate({});
-      setEmail("");
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Passwords match, do something here like submit form
+    PasswordService.forgotPassword(email, option)
+      .then((response) => {
+        setApiResponse(response.data.result);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setShowAlert(true);
   };
 
   return (
@@ -57,36 +55,26 @@ const ForgetPassword = () => {
                 <form
                   className="auth-form"
                   method="POST"
-                  onSubmit=""
+                  onSubmit={handleSubmit}
                   autoComplete={"off"}
                 >
                   <div className="email">
                     <p className="form-header">Email</p>
                     <input
                       type="email"
-                      className={`form-control ${
-                        validate.validate && validate.validate.email
-                          ? "is-invalid "
-                          : ""
-                      }`}
+                      className="form-control"
                       id="email"
                       name="email"
-                      value={email}
+                      value={email.email}
                       placeholder="Enter your email"
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => handleEmailChange(e)}
                     />
 
-                    <div
-                      className={`invalid-feedback text-start ${
-                        validate.validate && validate.validate.email
-                          ? "d-block"
-                          : "d-none"
-                      }`}
-                    >
-                      {validate.validate && validate.validate.email
-                        ? validate.validate.email[0]
-                        : ""}
-                    </div>
+                    {validate ? (
+                      <p className="isValid">Email is valid</p>
+                    ) : (
+                      <p className="isNotValid">Email is invalid</p>
+                    )}
                   </div>
 
                   <div className="text-center">
@@ -94,6 +82,13 @@ const ForgetPassword = () => {
                       Forgot Password
                     </button>
                   </div>
+                  {apiResponse}
+                  {showAlert && (
+                    <div className="alert-success" role="alert">
+                      Click the reset link sent to your email to reset your
+                      password
+                    </div>
+                  )}
                 </form>
 
                 <hr />
