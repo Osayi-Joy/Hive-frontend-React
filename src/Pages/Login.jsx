@@ -42,7 +42,9 @@ import icon from "../Assets/Icon.png";
 import HeaderBar from "../Component/HeaderBar";
 import { Footer } from "../Component/Footer"
 
+
 const Login = () => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
