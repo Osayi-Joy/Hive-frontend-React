@@ -11,6 +11,7 @@ import wallet from './Pages/Wallet';
 import dashboard from './Pages/Dashboard';
 import "./App.css";
 import "./Pages/CSS/login.css"
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 function App() {
   return (
