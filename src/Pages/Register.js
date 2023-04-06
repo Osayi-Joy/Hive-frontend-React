@@ -9,31 +9,33 @@ import { useNavigate } from "react-router-dom";
 const schema = yup.object({
     fullname: yup.string().required("Please Enter your Full Name"),
     phonenumber: yup
-    .string()
-    .required("Phone Number is Required")
-    .matches(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,"phone number must be valid"),
+      .string()
+      .required("Phone Number is Required")
+      .matches(
+        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+        "phone number must be valid"
+      ),
     email: yup
-    .string()
-    .required("Email Address is required")
-    .matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/, "email must be valid"),
-    password: yup
-    .string()
-    .min(6, "Password must be at least 6 characters"),
-    address: yup
-    .string()
-    .required("this feild must be field"),
-
+      .string()
+      .required("Email Address is required")
+      .matches(
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+        "email must be valid"
+      ),
+    password: yup.string().min(6, "Password must be at least 6 characters"),
+    address: yup.string().required("this field must be filled"),
     identification: yup
-    .mixed()
-    .test("fileSize", "File size is too large", (value) => {
+      .mixed()
+      .test("fileSize", "File size is too large", (value) => {
         return !value || value[0].size <= 1048576; // 1 MB
-    })
-    .test("fileType", "Only image files are allowed", (value) => {
-        return !value || (value[0].type.includes("image/"));
-    })
-    .nullable(true)
-
-})
+      })
+      .test("fileType", "Only image files are allowed", (value) => {
+        return !value || value[0].type.includes("image/");
+      })
+      .nullable(true),
+    role: yup.string().required("Please select a role"),
+  });
+  
 const Register = () => {
 
     const {
@@ -102,6 +104,25 @@ const Register = () => {
                 register={{...register("address")}}
                 errorMessage={errors.address?.message}
             />
+            {/* <Input
+                id="role"
+                label="Role"
+                type="radio"
+                placeholder="role"
+                register={{...register("role")}}
+                errorMessage={errors.role?.message}
+                /> */}
+                <div>
+                    <label htmlFor="role">Role</label>
+                    <br />
+                    <input type="radio" id="tasker" name="role" value="TASKER" {...register("role")} />
+                    <label htmlFor="tasker">Tasker</label>
+                    <br />
+                    <input type="radio" id="doer" name="role" value="DOER" {...register("role")} />
+                    <label htmlFor="doer">Doer</label>
+                    <br />
+                    </div>
+
             <Input 
                 id="identification"
                 label="Valid Identification"
