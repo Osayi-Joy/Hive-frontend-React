@@ -11,11 +11,13 @@ import wallet from './Pages/Wallet';
 import dashboard from './Pages/Dashboard';
 import "./App.css";
 import "./Pages/CSS/login.css"
-
+import CreateJob from './Pages/createJob/CreateJob';
+import HeaderBar from './Component/HeaderBar';
 function App() {
   return (
     <div>
       <BrowserRouter>
+      <HeaderBar/>
         <Routes>
           <Route path='/' Component={LandingPage}></Route>
           <Route path='/home' Component={LandingPage}></Route>
@@ -27,6 +29,7 @@ function App() {
           <Route path='/forget-password' Component={forgetPassword}></Route>
           <Route path='/wallet' Component={wallet}></Route>
           <Route path='/dashboard' Component={dashboard}></Route>
+          <Route path='/tasker/create-job' Component={CreateJob} />
         </Routes>
       </BrowserRouter>
     </div>

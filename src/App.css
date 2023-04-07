@@ -21,6 +21,12 @@
     align-items: center;
     justify-content: space-between;
     min-height: 90px;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999
   }
   .navbar-menu-container {
     display: none;
@@ -449,3 +455,79 @@
       display: none;
     }
   }
+
+  /* ############# USERLOGINMENU ######### */
+  .userloginMenu{
+    display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 32px;
+
+position: absolute;
+width: 353px;
+height: 32px;
+left: 986px;
+top: 31px;
+/* background-color: red; */
+  }
+  .userloginMenu .viewAllTask{
+    width: 160px;
+height: 22px;
+
+/* Body Text Normal -16 */
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+letter-spacing: 0.15px;
+color: #1570EF;
+flex: none;
+order: 0;
+flex-grow: 0;
+
+  }
+  .userDetails_notification {
+    display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 32px;
+width: 161px;
+height: 32px;
+flex: none;
+order: 1;
+flex-grow: 0;
+  }
+ 
+.userDetails_notification FontAwesomeIcon {
+  position: absolute;
+width: 24px;
+height: 24px;
+left: 0px;
+top: 1px;
+}
+
+.userDetails_notification .userDetails{
+  display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 8px;
+width: 120px;
+height: 32px;
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.userDetails .user-image{
+  width: 32px;
+  height: 32px;
+  
+  background: url("../src//Assets/john-doe-image.png");
+  border-radius: 200px;
+  background-color: red;
+}

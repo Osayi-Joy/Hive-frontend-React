@@ -7,7 +7,7 @@ import homeImage from '../Assets/home-image.svg'
 //new addition
 const LandingPage = () => {
     return <div className="home-container">
-    <HeaderBar />
+    {/* <HeaderBar /> */}
     <div className="home-banner-container">
         <div className="home-text-section">
             <div className="home-text-section-main">
