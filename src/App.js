@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './Component/LandingPage';
 import Register from './Pages/Register';
 import Login from './Pages/Login';
@@ -16,6 +16,8 @@ import "./Pages/CSS/login.css"
 import "./Pages/CSS/password_reset.css";
 import HeaderBar from './Component/HeaderBar';
 import CreateJob from './Pages/createJob/CreateJob';
+import PrivateRoute from './Component/PrivateRoute'
+
 
 function App() {
   return (

@@ -44,8 +44,14 @@ input[type="text"] {
   background: url('/src/Assets/Icon.png') no-repeat scroll 16px 13px;
 }
 
+.form-box {
+  height: 475px;
+
+}
+
 .password-input {
   margin-top: 20px;
+  margin-left: 18px;
   flex-direction: column;
 }
 
@@ -54,6 +60,10 @@ input[type="text"] {
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
+}
+
+.email {
+  margin-left: 18px;
 }
 
 
@@ -71,6 +81,7 @@ input[type="password"] {
   font-weight: 400;
   size: 14px;
   line-height: 20px;
+  margin-left: 18px;
 }
 
 .error {
@@ -93,7 +104,7 @@ button{
 .login-button p {
   display: flex;
   justify-content: center;
-  margin-top: 39px;
+  margin-top: 20px;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -103,6 +114,19 @@ button{
 .create-account-link {
   margin-left: 5px;
   color: #1570EF;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
  
