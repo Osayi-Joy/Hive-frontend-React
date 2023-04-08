@@ -15,6 +15,7 @@ import "./App.css";
 import "./Pages/CSS/login.css"
 import "./Pages/CSS/password_reset.css";
 import HeaderBar from './Component/HeaderBar';
+import CreateJob from './Pages/createJob/CreateJob';
 
 function App() {
   return (
