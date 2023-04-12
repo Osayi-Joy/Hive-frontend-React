@@ -29,7 +29,7 @@ const NavBar = () => {
                 }  
             </div>
             
-                {pathname === "/home" &&
+                {pathname === "/Home" &&
                     <ul>
                         <li><Link to="/About">About</Link></li>
                         <li className="vl"></li>
