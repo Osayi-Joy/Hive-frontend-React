@@ -16,22 +16,17 @@ import "./Pages/CSS/login.css"
 import "./Pages/CSS/password_reset.css";
 import HeaderBar from './Component/HeaderBar';
 import CreateJob from './Pages/Tasker/createJob/CreateJob';
-// import Login from './Component/login/login';
-import SignupForm from './Component/register/register';
-import { AuthProvider } from './context/AuthContext';
 
 
 function App() {
   
   return (
-    <AuthProvider>
       <BrowserRouter>
         <HeaderBar/>
         <Routes>
           <Route path='/' Component={LandingPage}></Route>
           <Route path='/home' Component={LandingPage}></Route>
           {/* <Route path='/register' Component={Register}></Route> */}
-          <Route path='/register' Component={SignupForm} />
           <Route path='/emailVerificationPage' Component={EmailVerificationPage}></Route>
           <Route path='/resendEmailVerification' Component={ResendEmailVerification}></Route>
           <Route path='/login' Component={Login}></Route>
@@ -43,11 +38,9 @@ function App() {
           <Route path='/wallet' Component={wallet}></Route>
           <Route path='/dashboard' Component={dashboard}></Route>
           <Route path='/tasker/create-job' Component={CreateJob} />
-        
         </Routes>
-
       </BrowserRouter>
-    </AuthProvider>
+
   );
 }
 
