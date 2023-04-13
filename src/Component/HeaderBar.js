@@ -17,8 +17,10 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 
+
 const HeaderBar = () => {
   const [open, setOpenMenu] = useState(false);
+  const [toggleNotification, settoggleNotification]= useState(false)
   const [isLogin, setIsLogin] = useState(true);
   const menuOptions = [
     {
@@ -43,6 +45,10 @@ const HeaderBar = () => {
     },
   ];
 
+  const handleNotificationbox = () =>{
+     settoggleNotification(!toggleNotification)
+  }
+
   return (
     <nav>
       <div className="nav-logo-container">
@@ -54,7 +60,7 @@ const HeaderBar = () => {
             <p className="viewAllTask">view all task created</p>
           </div>
 
-          <div className="userDetails_notification">
+          <div onClick={()=> handleNotificationbox() } className="userDetails_notification">
             <div className="notificationIcon">
               <FontAwesomeIcon icon={faBell} />
             </div>
