@@ -16,6 +16,7 @@ import "./Pages/CSS/login.css";
 import "./Pages/CSS/password_reset.css";
 import HeaderBar from "./Component/HeaderBar";
 import CreateJob from "./Pages/Tasker/createJob/CreateJob";
+import FundWalletModal from "./Pages/FundWalletModal";
 
 function App() {
   const [openNotification, setOpenNotification] = useState(false);
@@ -56,6 +57,7 @@ function App() {
         <Route path="/reset-password/:token" Component={Reset}></Route>
         <Route path="/forget-password" Component={ForgetPassword}></Route>
         <Route path="/wallet" Component={wallet}></Route>
+        <Route path="/fund-wallet" Component={FundWalletModal}></Route>
         <Route path="/dashboard" Component={dashboard}></Route>
         <Route path="/tasker/create-job" Component={CreateJob} />
       </Routes>

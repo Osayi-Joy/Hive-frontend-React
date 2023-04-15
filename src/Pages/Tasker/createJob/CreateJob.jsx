@@ -76,7 +76,7 @@ function CreateJob() {
     };
     console.log();
     if (walletBalance < taskDto.budgetRate) {
-      navigate("/wallet");
+      navigate("/fund-wallet");
     } else {
       axios
         .post("http://localhost:8080/tasks/", taskDto, {
