@@ -1,20 +1,15 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  body{
-    font-family: 'Inter';
-    font-style: normal;
-  }
-  a{
-    text-decoration: none;
-  }
+.dashboard-container{
+  width: 1440px;
+  /* height: 1126px; */
+  height: 400vh;
+  position: relative;
+  background-color: rgba(242, 244, 247, 1);
+  overflow: clip;
+  text-align: left;
+}
 
   .search-menu{
-    background-color: #F2F4F7;
+    background: #F2F4F7;
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
@@ -56,11 +51,14 @@
     width: 1180px;
     height: 38px;
     background: #F2F4F7;
+    border: none;
+
   }
 
   /************ adding new page******/
   .dashboard-job{
-    display: flex;
+    /* display: flex; */
+    justify-content: space-between;
     flex-direction: row;
     align-items: flex-start;
     padding: 0px;
@@ -93,26 +91,23 @@
     height: 39px;
   }
 
-  /* .my-horizontal-line:first-of-type{
-    height: 2px;
-    border: 1px solid;
-    background-color: #D0D5DD;
-    width: 100%;
-    
-  } */
 
   /*******home service **********/
   .dashboard-home-service{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
-    padding: 0px;
+    background: inherit;
+    background: #F2F4F7;
+    /* padding: 20px; */
     gap: 16px;
     position: absolute;
     width: 1220px;
-    height: 345px;
-    left: 100px;
-    top: 417px;
+    height: auto;
+    /* height: 345px; */
+    left: 0px;
+    top: 67px;
   }
 
   .dashboard-cleaning-service{
@@ -120,10 +115,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 24px;
+    /* padding: 24px; */
     gap: 32px;
-    width: 396px;
+    width: 30%;
     height: 345px;
+    margin: 15px;
     background: #FFFFFF;
   }
 
@@ -164,3 +160,30 @@
     height: 172px;
      
   }
+
+  .my-card-body {
+    padding: 24px;
+    gap: 32px;
+    width: 396px;
+    height: 345px;
+  }
+
+  .card-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    /* gap: 8px; */
+    width: 348px;
+  }  
+
+  .card-text span{
+  margin-left: 150px;
+ }
+  
+ .somthing-new-dashboard{
+  width: auto;
+  display: block;
+ }

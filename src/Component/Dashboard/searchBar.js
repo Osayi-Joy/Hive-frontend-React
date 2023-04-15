@@ -1,5 +1,6 @@
-import "../Pages/CSS/dashboard.css";
-import Emoji from "../Assets/Emoji.svg";
+
+import './dashboard.css'
+import Emoji from './Emoji.svg'
 
 const search = () => {
     const username = "Omotayo";
