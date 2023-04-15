@@ -3,14 +3,14 @@ import "./CreateJob.css";
 import DisplayImage from "../../../Assets/create-task-image_svg.svg";
 import WelcomeIcon from "../../../Assets/welcome-icon.svg";
 import NotificationBox from "../../../Component/NotificationBox/NotificationBox";
-// import AuthContext from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ProfileModal } from "../../../Component/profileModal/ProfileModal";
-
-// import AuthContext from "../../../auth/auth";
+import jwt_decode from "jwt-decode";
+import "react-datepicker/dist/react-datepicker.css";
 
 function CreateJob() {
+ 
   const [jobType, setJobType] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [budgetRate, setBudgetRate] = useState("");
@@ -19,13 +19,29 @@ function CreateJob() {
   const [estimatedTime, setEstimatedTime] = useState("");
   const [taskDuration, setTaskDuration] = useState("");
   const [walletBalance, setWalletBalance] = useState(null);
-  const [toggleNotification, settoggleNotification]= useState(false)
   const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
+
+
 
   const token = localStorage.getItem("token");
 
+  const handleBudgetChangeChange = (event) => {
+    const value = event.target.value;
+    const numberValue = parseFloat(value);
+    setBudgetRate(numberValue);
+  };
+
+  const handleEstimatedTimeChange = (event) => {
+    const value = event.target.value;
+    const numberValue = parseFloat(value);
+    setEstimatedTime(numberValue);
+  };
+
   useEffect(() => {
+    // console.log(openNotification)
     setLoading(true);
     axios
       .get("http://localhost:8080/transaction/walletBalance", {
@@ -35,14 +51,19 @@ function CreateJob() {
         },
       })
       .then((response) => {
-        setWalletBalance(response.data.data.accountBalance);
-        console.log(response.data.data.accountBalance);
+        setWalletBalance(response.data.result.accountBalance);
+        const decodedToken = jwt_decode(token);
+        const fullName = decodedToken.fullName;
+        console.log(walletBalance);
+        setUsername(fullName);
+  
         setLoading(false);
       })
       .catch((error) => console.log(error));
-  }, [token]);
+  }, [token, walletBalance]);
 
   const handleSubmit = async (event) => {
+    console.log("handleSubmit trigger");
     event.preventDefault();
     const taskDto = {
       jobType,
@@ -53,12 +74,12 @@ function CreateJob() {
       estimatedTime,
       taskDuration,
     };
-
+    console.log();
     if (walletBalance < taskDto.budgetRate) {
       navigate("/wallet");
     } else {
       axios
-        .post("/http://localhost:8080/tasks/", taskDto, {
+        .post("http://localhost:8080/tasks/", taskDto, {
           headers: {
             "Content-type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -66,19 +87,18 @@ function CreateJob() {
         })
         .then((response) => {
           // Handle successful task creation
-          console.log(response.data);
+          console.log(response.data.result);
         })
         .catch((error) => console.log(error));
     }
   };
-
   return (
     <div className="create-job-ccontainer">
       {/* <NotificationBox toggleNotification={toggleNotification} settoggleNotification={settoggleNotification} /> */}
-      <ProfileModal/>
+      {/* <ProfileModal/> */}
       <div className="task-creation-template">
         <div className="welocome-text-logo">
-          <h5>Welcome, Judith </h5>
+          <h5>Welcome, {username} </h5>
           <img src={WelcomeIcon} alt="" />
         </div>
         <div className="form-image-container">
@@ -99,9 +119,9 @@ function CreateJob() {
                 >
                   <option value="">select</option>
                   <option value="home_cleaning">Home Cleaning</option>
-                  <option value="grocery_shopping">Grocery Shopping</option>
+                  <option value="grocery shopping">Grocery Shopping</option>
                   <option value="gardening">Gardening</option>
-                  <option value="delivery_service">Delivery Service</option>
+                  <option value="delivery service">Delivery Service</option>
                   <option value="painting">Painting</option>
                   <option value="electrical_wiring">Electrical / Wiring</option>
                   <option value="other">Other</option>
@@ -147,7 +167,7 @@ function CreateJob() {
                     className="min-amout"
                     placeholder="Enter amount"
                     value={budgetRate}
-                    onChange={(event) => setBudgetRate(event.target.value)}
+                    onChange={handleBudgetChangeChange}
                   />
                   <select name="" id="">
                     <option value="NGN">NGN</option>
@@ -160,25 +180,27 @@ function CreateJob() {
               </div>
               <div className="task-validity-period">
                 <label htmlFor="">
-                  Task Validity Period <span>(optional)</span>
+                  Task Validity Date <span>(optional)</span>
                 </label>
+
                 <input
-                  type="date"
-                  name="taskValidityPeriod"
-                  id="taskValidityPeriod"
-                  value={estimatedTime}
-                  onChange={(event) => setEstimatedTime(event.target.value)}
+                  type="datetime-local"
+                  id="taskDuration"
+                  name="taskDuration"
+                  value={taskDuration}
+                  onChange={(event) => setTaskDuration(event.target.value)}
                 />
               </div>
               <div className="task-duration">
                 <label htmlFor="">
-                  Task Duration <span>(optional)</span>
+                  Task Estimated Period <span>(optional)</span>
                 </label>
                 <input
                   type="text"
                   id=""
-                  name="taskDuration"
-                  onChange={(event) => setTaskDuration(event.target.value)}
+                  name="estimatedPeriod"
+                  value={estimatedTime}
+                  onChange={handleEstimatedTimeChange}
                   placeholder="Enter estimated time for task perfromance"
                 />
               </div>

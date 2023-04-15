@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../Assets/logo.svg";
 import { HiOutlineBars3 } from "react-icons/hi2";
@@ -16,12 +16,18 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from "@fortawesome/free-regular-svg-icons";
+import jwt_decode from "jwt-decode";
 
 
 const HeaderBar = () => {
+  
   const [open, setOpenMenu] = useState(false);
-  const [toggleNotification, settoggleNotification]= useState(false)
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+ 
+
+
   const menuOptions = [
     {
       name: "Home",
@@ -44,10 +50,16 @@ const HeaderBar = () => {
       link: "/register",
     },
   ];
-
-  const handleNotificationbox = () =>{
-     settoggleNotification(!toggleNotification)
-  }
+ 
+   useEffect(() =>{
+    const currentUser = localStorage.getItem("token");
+    if (currentUser) {
+      const decodedToken = jwt_decode(currentUser);
+       setUser(decodedToken.fullName)
+       setUserEmail(decodedToken.email)
+      setIsLogin(true);
+    }
+   },[])
 
   return (
     <nav>
@@ -60,7 +72,7 @@ const HeaderBar = () => {
             <p className="viewAllTask">view all task created</p>
           </div>
 
-          <div onClick={()=> handleNotificationbox() } className="userDetails_notification">
+          <div className="userDetails_notification">
             <div className="notificationIcon">
               <FontAwesomeIcon icon={faBell} />
             </div>
@@ -69,7 +81,7 @@ const HeaderBar = () => {
              <div className="user-image">
 
              </div>
-             <p>Hi, Judith</p>
+             <p>Hi, {user}</p>
             </div>
           </div>
         </div>
