@@ -64,17 +64,18 @@ const Login = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-  
+     
       const data = await response.json();
   
       if (response.ok) {
         localStorage.setItem("token", data.result.token);
   
-        const roles = JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
+       
+
+        const roles = JSON.parse(window.atob(localStorage.getItem("token").split(".")[1]))
           .roles;
-  
         if (roles.includes("TASKER")) {
-          window.location.href = "/dashboard";
+          window.location.href = "/tasker/create-job";
         } else if (roles.includes("DOER")) {
           window.location.href = "/dashboard";
         }
@@ -90,8 +91,8 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-        <HeaderBar/>
+    <div style={{padding:"7rem 6rem", backgroundColor:"red"}} className="container">
+        {/* <HeaderBar/> */}
       <div className="form-box">
         <h2>Hi, Welcome back</h2>
         <form onSubmit={handleSubmit} >
