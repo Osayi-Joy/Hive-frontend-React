@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import HeaderBar from './HeaderBar'
 import { Footer } from './Footer'
 import homeImage from '../Assets/home-image.svg'
+import NavBar from "../Component/NavBar";
+
 
 //new addition
 const LandingPage = () => {
     return <div className="home-container">
-    <HeaderBar />
+    <NavBar />
     <div className="home-banner-container">
         <div className="home-text-section">
             <div className="home-text-section-main">
