@@ -4,7 +4,9 @@ import "../Pages/CSS/register.css";
 import { useForm} from 'react-hook-form'
 import { yupResolver} from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+import axios from 'axios';
+
 
 const schema = yup.object({
     fullname: yup.string().required("Please Enter your Full Name"),
@@ -37,7 +39,8 @@ const schema = yup.object({
   });
   
 const Register = () => {
-
+    // e.preventDefault();
+    
     const {
         handleSubmit, 
         register,
@@ -45,10 +48,53 @@ const Register = () => {
       } = useForm({
         resolver: yupResolver(schema)
       });
+    //   axios.post('/register', {
+    //     fullName: 'Fred',
+    //     email: 'victor@gmail.com',
+    //     phonenumber
+    //   })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
       
-      const formSubmit = (data) => {
-        console.log(data);
-        routeChange(); // Redirect to another page
+    //   const formSubmit = (data) => {
+    //     console.log(data);
+    //     routeChange(); // Redirect to another page
+    //   };
+    const formSubmit = async (data) => {
+        try {
+          const response = await axios.post("http://localhost:5001/auth/register", {
+            // method: "POST",
+            // headers: {
+            //   "Content-Type": "application/json"
+            // fullname:
+            // email:
+            // },
+            // body: JSON.stringify({
+              fullName: data.fullname,
+              email: data.email,
+              phoneNumber: data.phonenumber,
+              password: data.password,
+              address: data.address,
+              role: data.role,
+            //   validId: data.identification[0]
+            })
+          ;
+    
+          if (response.ok) {
+            const result = await response.json();
+            console.log(result);
+            console.log("success");
+            routeChange(); // Redirect to another page
+          } else {
+            console.error(`HTTP error: ${response.status}`);
+          }
+        } catch (error) {
+          console.error(`Error: ${error}`);
+        }
       };
       
       const handleFormSubmit = (event) => {
@@ -61,6 +107,7 @@ const Register = () => {
         let path = `/confirm-email`; 
         navigate(path);
       }
+      
       
     return <div className="sign-up">
         <form onSubmit={handleSubmit(formSubmit)}>
@@ -123,19 +170,19 @@ const Register = () => {
                     <br />
                     </div>
 
-            <Input 
+            {/* <Input 
                 id="identification"
                 label="Valid Identification"
                 type="file"
                 placeholder="upload image"
-                register={{
-                    ...register("identification"), 
-                    validate: (value) => {
-                    return schema.fields.identification.validate(value);
-                }
-            }}
-            errorMessage={errors.identification?.message}
-        />
+                // register={{
+                //     ...register("identification"), 
+                    // validate: (value) => {
+                //     return schema.fields.identification.validate(value);
+                // }
+            // }}
+            // errorMessage={errors.identification?.message}
+        /> */}
 
 
             <button type='submit'className='sign-up-btn'>Sign Up</button>
