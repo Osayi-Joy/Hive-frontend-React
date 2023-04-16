@@ -27,7 +27,6 @@ function FundWalletModal(props) {
     const handleSubmit = (event) => {
 
         event.preventDefault();
-        // Passwords match, do something here like submit form
         WalletService.initializePaymentAndGetUrl(requestData,token)
             .then((response) => {
                 setApiResponse(response.data.result);
