@@ -1,8 +1,13 @@
+import HeaderBar from "../Component/HeaderBar";
+import SearchBar from "../Component/Dashboard/searchBar"
+import Newpage from "../Component/Dashboard/DashboardJob";
+import '../Component/Dashboard/dashboard.css'
 const dashboard = () => {
     return <div className="dashboard-container">
-        <div>
-            <h2>welcome to home page</h2>
-        </div>
+        <HeaderBar />
+        <SearchBar />
+        <Newpage />
+        
     </div>
 }
  

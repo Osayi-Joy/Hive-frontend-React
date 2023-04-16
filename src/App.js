@@ -11,11 +11,13 @@ import Reset from './Pages/Resetpassword';
 import ForgetPassword from './Pages/ForgetPassword';
 import wallet from './Pages/Wallet';
 import dashboard from './Pages/Dashboard';
+import tasker from './Pages/Tasker-Dashboard';
 import "./App.css";
 import "./Pages/CSS/login.css"
 import "./Pages/CSS/password_reset.css";
 import PrivateRoute from './Component/PrivateRoute'
 
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
           <Route path='/forget-password' Component={ForgetPassword}></Route>
           <Route path='/wallet' Component={wallet}></Route>
           <Route path='/dashboard' Component={dashboard}></Route>
+          <Route path='/tasker' Component={tasker}></Route>
         </Routes>
       </BrowserRouter>
     </div>
