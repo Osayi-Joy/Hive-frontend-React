@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './Component/LandingPage';
 import Register from './Pages/Register';
 import Login from './Pages/Login';
+import About from './Pages/About';
 import EmailVerificationPage from './Pages/EmailVerificatonPage';
 import ResendEmailVerification from './Pages/ResendEmailVerificaton';
 import EmailVerificationSuccessContainer from './Pages/EmailVerificationSuccessContainer';
@@ -34,6 +35,7 @@ function App() {
           <Route path='/forget-password' Component={ForgetPassword}></Route>
           <Route path='/wallet' Component={wallet}></Route>
           <Route path='/dashboard' Component={dashboard}></Route>
+          <Route path='/about' Component={About}></Route>
         </Routes>
       </BrowserRouter>
     </div>
