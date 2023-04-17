@@ -1,132 +1,128 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Reem Kufi", sans-serif !important;
-  }
-  .container{
+
+.login-container {
     width: 100%;
     height: 100vh
-  }
+}
 
-
-  .form-box{
+.form-box {
     display: flex;
     flex-direction: column;
     border: #FFFFFF solid 2px;
     background-color: #FFFFFF;
-    width: 484px;
-    height: 468px;
-    margin: 164px 478px;
+    width: 50%;
+    height: 92%;
+    margin: 2rem auto;
     padding: 32px;
-    align-items: center; 
+    align-items: center;
     border-radius: 15px;
-  }
-
-h2{
-  color: #012A4A;
-  margin-bottom: 36px;
-}
-input{
-  width: 420px;
-  height: 44px;
-  border-radius: 5px;
-  padding: 12px 269px 12px 44px;
-  margin: 8px 2px;
 }
 
-input[type="text"] {
-  width: 420px;
-  height: 44px;
-  border-radius: 5px;
-  padding: 12px 44px 12px 44px;
-  margin: 8px 2px;
-  background: url('/src/Assets/Icon.png') no-repeat scroll 16px 13px;
+.login-container h2 {
+    color: #012A4A;
+
+    /*margin-bottom: 2rem;*/
 }
 
-.form-box {
-  height: 475px;
-
+.login-container label {
+    margin: 0 auto 0 3rem;
 }
 
-.password-input {
-  margin-top: 20px;
-  margin-left: 18px;
-  flex-direction: column;
+.login-container input[type="text"] {
+    width: 80%;
+    height: 44px;
+    border-radius: 5px;
+    padding: 12px 44px 12px 44px;
+    margin: 0 auto;
+    background: url('/src/Assets/Icon.png') no-repeat scroll 16px 13px;
+}
+
+.login-container .password-input, .login-container .email {
+    /*background-color: blue;*/
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
 }
 
 .input-group p {
-  color: #012A4A;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 20px;
-}
-
-.email {
-  margin-left: 18px;
+    color: #012A4A;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
 }
 
 
-input[type="password"] {
-  width: 420px;
-  height: 44px;
-  border-radius: 5px;
-  padding: 12px 44px;
-  margin: 8px 2px;
-  background: url('/src/Assets/Iconkey.png') no-repeat scroll 16px 11px;
+.login-container input[type="password"] {
+    width: 80%;
+    height: 44px;
+    border-radius: 5px;
+    padding: 12px 44px;
+    margin: 0 auto;
+    /*margin: 8px auto 0 auto;*/
+    background: url('/src/Assets/Iconkey.png') no-repeat scroll 16px 11px;
+}
+
+.forgot-link {
+    margin-left: 3.3rem;
 }
 
 .forgot-link .forgot-password {
-  color: #1570EF;
-  font-weight: 400;
-  size: 14px;
-  line-height: 20px;
-  margin-left: 18px;
+    color: #1570EF;
+    font-weight: 400;
+    line-height: 20px;
 }
 
 .error {
-  color: red;
-  font-size: 13px;
-  margin-bottom: 1px;
+    color: red;
+    font-size: 13px;
+    margin-bottom: 2px;
+    margin-left: 3.0rem;
 }
 
-button{
-  padding: 4px 16px;
-  width: 420px;
-  height: 44px;
-  background: #1570EF;
-  border-radius: 6px;
-  color: #FFFFFF;
-  margin-top: 24px;
-  font-size: medium;
-  }
+.login-container button {
+    padding: 4px 16px;
+    width: 100%;
+    height: 44px;
+    background: #1570EF;
+    border-radius: 6px;
+    color: #FFFFFF;
+    margin: 24px auto 0 auto;
+    font-size: medium;
+}
+
+.login-button {
+    margin: 0 auto;
+    width: 80%;
+
+}
 
 .login-button p {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #101828;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #101828;
 }
 
 .create-account-link {
-  margin-left: 5px;
-  color: #1570EF;
+    margin-left: 5px;
+    color: #1570EF;
 }
 
 .spinner {
-  animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-  */
+
+
+

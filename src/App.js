@@ -1,7 +1,6 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './Component/LandingPage';
-import {useState} from "react";
 import Login from './Pages/Login';
 import EmailVerificationPage from './Pages/EmailVerificatonPage';
 import ResendEmailVerification from './Pages/ResendEmailVerificaton';
@@ -25,6 +24,9 @@ import Register from "./Pages/Register";
 
 function App() {
   const [openNotification, setOpenNotification] = useState(false);
+  const [isLoggin, setIslogin] = useState(false)
+
+  const user = localStorage.getItem("token");
 
   function toggleBoolean(booleanValue) {
     return !booleanValue;
@@ -37,10 +39,16 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <HeaderBar
-            toggleNotification={toggleNotification}
-            openNotification={openNotification}
-        />
+        {
+          user !== null ? (<HeaderBar
+              toggleNotification={toggleNotification}
+              openNotification={openNotification}
+          /> ):
+          (
+              ""
+          )
+        }
+
         <Routes>
           <Route path="/" Component={LandingPage}></Route>
           <Route path="/home" Component={LandingPage}></Route>
