@@ -21,6 +21,7 @@ import FundWalletModal from "./Pages/FundWalletModal";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import About from "./Pages/About";
+import Register from "./Pages/Register";
 
 function App() {
   const [openNotification, setOpenNotification] = useState(false);
@@ -65,6 +66,7 @@ function App() {
           <Route path="/tasker/create-job" Component={CreateJob} />
           <Route path='/tasker' Component={Tasker}></Route>
           <Route path='/about' Component={About}></Route>
+          <Route path='/register' Component={Register}></Route>
         </Routes>
       </BrowserRouter>
     </div>
