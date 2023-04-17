@@ -1,12 +1,68 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Reem Kufi", sans-serif !important;
-}
-a {
-  text-decoration: none;
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Reem Kufi", sans-serif !important;
+  }
+  a {
+    text-decoration: none;
+  }
+  .App {
+    min-height: 100vh;
+    max-width: 1900px;
+  }
+  
+  body {
+    background-color: #F2F4F7;
+  }
+  /********* navbar *********/
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 90px;
+    background-color: #ffffff;
+  }
+  .navbar-menu-container {
+    display: none;
+  }
+  .navbar-links-container{
+    margin-right: 50px;
+  }
+  .navbar-links-container a {
+    margin-right: 3rem;
+    text-decoration: none;
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .primary-button {
+    background-color: white;
+    outline: none;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+    width: 180px;
+    height: 50px;
+    margin-left: 20px;
+  }
+  .navbar-cart-icon {
+    font-size: 1.15rem;
+  }
+  .primary-button:hover {
+    background-color: rgb(234, 234, 234);
+  }
+  .navbar-menu-container svg {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .nav-logo-container{
+    cursor: pointer;
+    margin-left: 90px;
+  }
 .App {
   min-height: 100vh;
   max-width: 1900px;
@@ -304,6 +360,87 @@ span {
   padding: 0px;
 }
 
+  /***************** EMAIL VERIFICATION PAGES ***********/
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    border: 1px solid black;
+    margin: auto;
+  }
+  
+  button {
+    background-color: rgb(12, 111, 250);
+    color: white;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+
+  /***************** MEDIA QUERIES ******************/
+  @media (max-width: 1000px) {
+    .navbar-links-container {
+      margin-right: 0px;
+    }
+    .navbar-links-container a {
+      margin-right: 1rem;
+      font-size: 1rem;
+    }
+    .primary-button {
+      width: 100%;
+      font-size: 1rem;
+      margin: 0.5rem 0rem 0rem 0rem;
+
+    }
+    .home-bannerImage-container {
+      max-width: 600px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .nav-logo-container {
+      max-width: 140px;
+      margin-left: 10px;
+    }
+
+    .navbar-links-container {
+      display: none;
+    }
+
+    .navbar-menu-container {
+      display: flex;
+    }
+
+    .home-bannerImage-container {
+      max-width: 450px;
+    }
+
+    .home-banner-container,
+    .about-section-container {
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-section-container {
+      flex-direction: column;
+    }
+
+    .home-container {
+      margin-left: 20px;
+    }
+
+    .home-image-section,
+    .about-section-image-container {
+      overflow: hidden;
+      margin-left: auto;
+    }
+  }
 /***************** MEDIA QUERIES ******************/
 @media (max-width: 1000px) {
   .navbar-links-container {

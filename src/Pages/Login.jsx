@@ -69,14 +69,17 @@ const Login = () => {
   
       if (response.ok) {
         localStorage.setItem("token", data.result.token);
+
   
        
 
         const roles = JSON.parse(window.atob(localStorage.getItem("token").split(".")[1]))
           .roles;
         if (roles.includes("TASKER")) {
+          localStorage.setItem("userRole", "TASKER")
           window.location.href = "/tasker/create-job";
         } else if (roles.includes("DOER")) {
+          localStorage.setItem("userRole", "DOER")
           window.location.href = "/dashboard";
         }
       } else {
