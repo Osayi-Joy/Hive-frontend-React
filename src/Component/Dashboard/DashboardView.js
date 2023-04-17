@@ -8,7 +8,7 @@ const View = () => {
 
     const [data, setData] = React.useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5001/tasks/task/list')
+        axios.get('http://localhost:8080/tasks/new_task')
             .then((res) => {
                 setData(res.data.result);
                 console.log(res.data.result);

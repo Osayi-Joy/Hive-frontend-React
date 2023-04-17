@@ -7,9 +7,15 @@ import { useEffect } from 'react';
 
 function Ongoing() {
 
+    const token = localStorage.getItem("token");
+
     const [data, setData] = React.useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5001/tasks/user/ongoing_task')
+        axios.get('http://localhost:8080/tasks/user/ongoing_task',{
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },})
             .then((res) => {
                 setData(res.data.result);
                 console.log(res.data.result);
