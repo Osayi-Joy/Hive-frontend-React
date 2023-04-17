@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './Component/LandingPage';
-import Register from './Pages/Register';
+import {useState} from "react";
 import Login from './Pages/Login';
 import EmailVerificationPage from './Pages/EmailVerificatonPage';
 import ResendEmailVerification from './Pages/ResendEmailVerificaton';
@@ -11,7 +11,6 @@ import Reset from './Pages/Resetpassword';
 import ForgetPassword from './Pages/ForgetPassword';
 import wallet from './Pages/Wallet';
 import dashboard from './Pages/Dashboard';
-import About from './Pages/About';
 import "./App.css";
 import "./Pages/CSS/login.css"
 import "./Pages/CSS/password_reset.css";
@@ -19,9 +18,9 @@ import Tasker from "./Pages/Tasker-Dashboard";
 import HeaderBar from "./Component/HeaderBar";
 import CreateJob from "./Pages/Tasker/createJob/CreateJob";
 import FundWalletModal from "./Pages/FundWalletModal";
-import PrivateRoute from './Component/PrivateRoute'
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import About from "./Pages/About";
 
 function App() {
   const [openNotification, setOpenNotification] = useState(false);
@@ -44,7 +43,6 @@ function App() {
         <Routes>
           <Route path="/" Component={LandingPage}></Route>
           <Route path="/home" Component={LandingPage}></Route>
-          {/* <Route path='/register' Component={Register}></Route> */}
           <Route
               path="/emailVerificationPage"
               Component={EmailVerificationPage}
@@ -54,7 +52,6 @@ function App() {
               Component={ResendEmailVerification}
           ></Route>
           <Route path="/login" Component={Login}></Route>
-          {/* <Route path='/login' Component={Login}/> */}
           <Route
               path="/confirmed-email"
               Component={EmailVerificationSuccessContainer}
@@ -67,6 +64,7 @@ function App() {
           <Route path="/dashboard" Component={dashboard}></Route>
           <Route path="/tasker/create-job" Component={CreateJob} />
           <Route path='/tasker' Component={Tasker}></Route>
+          <Route path='/about' Component={About}></Route>
         </Routes>
       </BrowserRouter>
     </div>
