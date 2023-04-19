@@ -4,7 +4,7 @@ import HeaderBar from './HeaderBar'
 import { Footer } from './Footer'
 import homeImage from '../Assets/home-image.svg'
 
-//new addition
+//new addition  hive/frontend-mvp/blessing
 const LandingPage = () => {
     return <div className="home-container">
     {/* <HeaderBar /> */}

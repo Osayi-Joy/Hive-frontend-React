@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import Logo from "../Assets/logo.svg";
-import { HiOutlineBars3 } from "react-icons/hi2";
+import {HiOutlineBars3} from "react-icons/hi2";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -14,114 +14,117 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from "@fortawesome/free-regular-svg-icons";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faBell} from "@fortawesome/free-regular-svg-icons";
 import jwt_decode from "jwt-decode";
 
 
 const HeaderBar = () => {
-  
-  const [open, setOpenMenu] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
-  const [user, setUser] = useState("");
-  const [userEmail, setUserEmail] = useState("");
- 
+
+    const [open, setOpenMenu] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
+    const [user, setUser] = useState("");
+    const [userEmail, setUserEmail] = useState("");
 
 
-  const menuOptions = [
-    {
-      name: "Home",
-      icon: <HomeIcon />,
-      link: "/",
-    },
-    {
-      name: "About",
-      icon: <InfoIcon />,
-      link: "/about",
-    },
-    {
-      name: "Sign In",
-      icon: <LoginIcon />,
-      link: "/login",
-    },
-    {
-      name: "Sign Up",
-      icon: <LogoutIcon />,
-      link: "/register",
-    },
-  ];
- 
-   useEffect(() =>{
-    const currentUser = localStorage.getItem("token");
-    if (currentUser) {
-      const decodedToken = jwt_decode(currentUser);
-       setUser(decodedToken.fullName)
-       setUserEmail(decodedToken.email)
-      setIsLogin(true);
-    }
-   },[])
+    const menuOptions = [
+        {
+            name: "Home",
+            icon: <HomeIcon/>,
+            link: "/",
+        },
+        {
+            name: "About",
+            icon: <InfoIcon/>,
+            link: "/about",
+        },
+        {
+            name: "Sign In",
+            icon: <LoginIcon/>,
+            link: "/login",
+        },
+        {
+            name: "Sign Up",
+            icon: <LogoutIcon/>,
+            link: "/register",
+        },
+    ];
 
-  return (
-    <nav>
-      <div className="nav-logo-container">
-        <img src={Logo} alt="Hive logo navebar" />
-      </div>
-      {isLogin ? (
-        <div className="userloginMenu">
-          <div className="viewTask">
-            <p className="viewAllTask">view all task created</p>
-          </div>
+    useEffect(() => {
+        const currentUser = localStorage.getItem("token");
+        if (currentUser) {
+            const decodedToken = jwt_decode(currentUser);
+            setUser(decodedToken.fullName)
+            setUserEmail(decodedToken.email)
+            setIsLogin(true);
+        }
+    }, [])
 
-          <div className="userDetails_notification">
-            <div className="notificationIcon">
-              <FontAwesomeIcon icon={faBell} />
+    return (
+        <nav>
+            <div className="nav-logo-container">
+                <img src={Logo} alt="Hive logo navebar"/>
             </div>
-            <div className="userDetails">
+            {isLogin ? (
+                <div className="userloginMenu">
 
-             <div className="user-image">
+                    <div className="item task">
+                        <p className="viewAllTask">Tasks</p>
+                    </div>
 
-             </div>
-             <p>Hi, {user}</p>
+                    <div className="item wallet">
+                        <p className="viewAllTask">Wallet</p>
+                    </div>
+
+                    <div className="item userDetails_notification">
+                        <div className="notificationIcon">
+                            <FontAwesomeIcon icon={faBell}/>
+                        </div>
+                        <div className="userDetails">
+                            <div className="user-image">
+                            </div>
+                            <p>{user.split(' ')[0]}</p>
+                        </div>
+                    </div>
+                    <Link className="item logout"><h6>logout</h6> </Link>
+                </div>
+            ) : (
+                <div className="navbar-links-container">
+
+                    <Link to={"/register"}>
+                        <button className="primary-button" style={{backgroundColor: "#1570EF"}}>Register</button>
+                    </Link>
+                    <Link to={"/login"}>
+                        <button className="primary-button" style={{backgroundColor: "#1570EF"}}>Login</button>
+                    </Link>
+                </div>
+            )}
+
+            <div className="navbar-menu-container">
+                <HiOutlineBars3 onClick={() => setOpenMenu(true)}/>
             </div>
-          </div>
-        </div>
-      ) : (
-        <div className="navbar-links-container">
-          
-          <Link to={"/register"}>
-            <button className="primary-button" style={{backgroundColor:"#1570EF"}}>Register</button>
-          </Link>
-          <Link to={"/login"}>
-            <button className="primary-button" style={{backgroundColor:"#1570EF"}}>Login</button>
-          </Link>
-        </div>
-      )}
-
-      <div className="navbar-menu-container">
-        <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
-      </div>
-      <Drawer open={open} onClose={() => setOpenMenu(false)} anchor="right">
-        <Box
-          sx={{ width: 250 }}
-          role="presentation"
-          onClick={() => setOpenMenu(false)}
-          onKeyDown={() => setOpenMenu(false)}
-        >
-          <List>
-            {menuOptions.map((item) => (
-              <ListItem key={item.text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-        </Box>
-      </Drawer>
-    </nav>
-  );
+            <Drawer open={open} onClose={() => setOpenMenu(false)} anchor="right">
+                <Box
+                    sx={{width: 250}}
+                    role="presentation"
+                    onClick={() => setOpenMenu(false)}
+                    onKeyDown={() => setOpenMenu(false)}
+                >
+                    <List>
+                        {menuOptions.map((item) => (
+                            <ListItem key={item.text} disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>{item.icon}</ListItemIcon>
+                                    <ListItemText primary={item.text}/>
+                                </ListItemButton>
+                            </ListItem>
+                        ))}
+                    </List>
+                    <Divider/>
+                </Box>
+            </Drawer>
+        </nav>
+    );
 };
 
 export default HeaderBar;

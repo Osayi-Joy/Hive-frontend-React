@@ -123,6 +123,7 @@ nav {
 .nav-logo-container {
   cursor: pointer;
   margin-left: 90px;
+
 }
 
 /************ Home Page **************/
@@ -595,19 +596,37 @@ span {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
+  justify-content: space-around;
+  padding: 0.5rem 0;
   gap: 32px;
-
   position: absolute;
-  width: 353px;
   height: 32px;
-  left: 986px;
+  right: 2rem;
   top: 31px;
-  /* background-color: red; */
+  width: 70%;
+  font-size: 1.5rem;
+  /*background-color: yellow;*/
+
+  /*flex-grow: 2;*/
+
+}
+.userloginMenu .item{
+  margin-top:1.5rem
+}
+.userloginMenu .item:hover{
+  cursor:pointer;
+  background-color: grey;
+  color:white;
+  border-radius: 5px;
+
+}
+.userloginMenu .logout{
+
 }
 .userloginMenu .viewAllTask {
-  width: 160px;
+  /*width: 80%;*/
   height: 22px;
+
 
   /* Body Text Normal -16 */
 
