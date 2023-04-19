@@ -10,6 +10,7 @@ import LoginAndRegisterNavBar from "../Component/LoginAndRegisterNavBar/LoginAnd
 import ErrorPopModal from "../Component/ErrorPopModal";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import SuccessPopModal from "../Component/SuccessPopModal";
 
 
 const schema = yup.object({
@@ -49,7 +50,10 @@ const Register = () => {
     const handleOpenErrorDialog= () => setOpenErrorDialog(true);
     const handleCloseErrorDialog = () => setOpenErrorDialog(false);
     const [errorMessage, setErrorMessage] = useState("");
-
+    const [openSuccess, setOpenSuccess] = React.useState(false);
+    const verifyMessage = " Verify your email"
+    const instruction =   "Hi there, a verification link has been sent to your email."
+    const handleOpenSuccess = () => setOpenSuccess(true);
     const {
         handleSubmit,
         register,
@@ -75,10 +79,10 @@ const Register = () => {
                 const result = await response.json();
                 console.log(result);
                 console.log("success");
-                routeChange(); // Redirect to another page
+                handleOpenSuccess();
             } else {
                 // FIx the flow above
-                routeChange();
+                handleOpenSuccess();
                 console.error(`HTTP error: ${response.status}`);
             }
         } catch (error) {
@@ -88,14 +92,23 @@ const Register = () => {
         }
     };
 
+    let navigate = useNavigate();
+
+    const handleSuccessClose = () => {
+        setOpenSuccess(false);
+        // when the modal is closed, navigate to the login
+        navigate("/login");
+    }
+
     const handleFormSubmit = (event) => {
         event.preventDefault(); // Prevent the form from submitting
         handleSubmit(formSubmit)(event); // Call the form submission handler
+
     }
 
-    let navigate = useNavigate();
+
     const routeChange = () => {
-        let path = `/emailVerificationPage`;
+        let path = `/login`;
         navigate(path);
     }
 
@@ -181,6 +194,16 @@ const Register = () => {
 
                 <p>Already have an account? <span><a href="/login">Login</a></span></p>
             </div>
+            <Modal
+                open={openSuccess}
+                onClose={handleSuccessClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <SuccessPopModal myProp={verifyMessage} message={instruction}/>
+                </Box>
+            </Modal>
         </>
     )
 

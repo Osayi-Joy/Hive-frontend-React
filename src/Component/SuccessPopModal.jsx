@@ -10,6 +10,9 @@ function SuccessPopModal(props) {
                     <p className="success-pop-modal-task-createdtask-cre">
                         {props.myProp}
                     </p>
+                    <p className="success-pop-modal-task-createdtask-cre">
+                        {props.message}
+                    </p>
                     <div className="success-pop-modal-frame-8345x">
                         <div className="success-pop-modal-frame-8344x" />
                     </div>
