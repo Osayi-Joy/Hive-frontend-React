@@ -40,15 +40,16 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        {
-          user !== null ? (<HeaderBar
-              toggleNotification={toggleNotification}
-              openNotification={openNotification}
-          /> ):
-          (
-              ""
-          )
-        }
+        {/*{*/}
+        {/*  user !== null ? (<HeaderBar*/}
+        {/*      toggleNotification={toggleNotification}*/}
+        {/*      openNotification={openNotification}*/}
+        {/*  /> ):*/}
+        {/*  (*/}
+        {/*      ""*/}
+        {/*  )*/}
+        {/*}*/}
+    <HeaderBar/>
 
         <Routes>
           <Route path="/" Component={LandingPage}></Route>

@@ -88,11 +88,11 @@ const HeaderBar = () => {
       ) : (
         <div className="navbar-links-container">
           
-          <Link to={"/about"}>
-            <button className="primary-button">About</button>
+          <Link to={"/register"}>
+            <button className="primary-button" style={{backgroundColor:"#1570EF"}}>Register</button>
           </Link>
           <Link to={"/login"}>
-            <button className="primary-button">Login</button>
+            <button className="primary-button" style={{backgroundColor:"#1570EF"}}>Login</button>
           </Link>
         </div>
       )}

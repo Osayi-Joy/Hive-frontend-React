@@ -98,7 +98,7 @@ const Login = () => {
 
     return (
         <>
-            <LoginAndRegisterNavBar/>
+            {/*<LoginAndRegisterNavBar/>*/}
             <div style={{padding: "7rem 6rem", backgroundColor: "#F2F4F7"}} className="login-container">
 
                 <div className="form-box">

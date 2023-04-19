@@ -126,7 +126,7 @@ const Register = () => {
 
     return (
         <>
-            <LoginAndRegisterNavBar/>
+            {/*<LoginAndRegisterNavBar/>*/}
             <Modal
                 open={openErrorDialog}
                 onClose={handleCloseErrorDialog}
