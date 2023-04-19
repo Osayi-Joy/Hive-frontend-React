@@ -4,6 +4,9 @@ import { faSquareEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 function EmailVerificationPage() {
 
+    const token = localStorage.getItem("token");
+
+
     return (
         <div className='container'>
             <FontAwesomeIcon icon = {faSquareEnvelope} size="2x" color='green' />

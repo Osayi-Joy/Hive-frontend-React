@@ -1,6 +1,9 @@
 import React from 'react';
-import Modal from '../Modal/Model'
+import NewTabModal from '../Modal/NewTabModal';
 import "./ServiceText.css";
+import OngoingModal from "../Modal/OngoingModal";
+import ApproveTabModal from "../Modal/ApproveTabModal";
+import CompletedTabModal from "../Modal/CompletedTabModal";
 
 function ServiceText(props) {
     
@@ -35,8 +38,22 @@ function ServiceText(props) {
                         </div>
                     </div>
                 </div>
-            
-            <Modal {...props}/>
+            {/*This is the component having the button and the modals*/}
+
+            <>
+                {(() => {
+                    switch (props.status) {
+                        case "ONGOING":
+                            return <OngoingModal {...props} />;
+                        case "PENDING_APPROVAL":
+                            return <ApproveTabModal{...props} />;
+                        case "COMPLETED":
+                            return <CompletedTabModal {...props} />;
+                        default:
+                            return <NewTabModal {...props} />;
+                    }
+                })()}
+            </>
         </div>
     );
 }

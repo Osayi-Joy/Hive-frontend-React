@@ -1,39 +1,57 @@
 import axios from "axios";
 
-const GET_ALL_NEW_TASKS_CREATED = "http://localhost:8080/tasks/tasker/?status=NEW";
-const GET_ONGOING_TASKS = "http://localhost:8080/tasks/tasker/?status=ONGOING";
-const GET_COMPLETED_TASKS = "http://localhost:8080/tasks/tasker/?status=COMPLETED";
+const GET_ALL_NEW_TASKS_CREATED = "http://localhost:8080/tasks/fetchTasks/?status=NEW";
+const GET_ONGOING_TASKS = "http://localhost:8080/tasks/fetchTasks/?status=ONGOING";
+const GET_COMPLETED_TASKS = "http://localhost:8080/tasks/fetchTasks/?status=COMPLETED";
+const GET_PENDING_APPROVAL = "http://localhost:8080/tasks/fetchTasks/?status=PENDING_APPROVAL";
 const GET_ALL_TASKS = "http://localhost:8080/transaction/history";
+const JWT_TOKEN = localStorage.getItem("token");
 
 class TaskerService {
-    getAllNewTasksCreated(data, token) {
+    getAllNewTasksCreated() {
         return axios.get(GET_ALL_NEW_TASKS_CREATED, {
             headers: {
-                Authorization: `Bearer ${token}`,// Add the Bearer token to the headers
+                Authorization: `Bearer ${JWT_TOKEN}`,// Add the Bearer token to the headers
                 "Content-Type": "application/json"
             }
         });
     }
 
-    getAllOngoingTasksCreated(data, token) {
+    getAllOngoingTasksCreated() {
         return axios.get(GET_ONGOING_TASKS, {
             headers: {
-                Authorization: `Bearer ${token}`,// Add the Bearer token to the headers
+                Authorization: `Bearer ${JWT_TOKEN}`,// Add the Bearer token to the headers
                 "Content-Type": "application/json"
             }
         });
     }
 
-    getAllCompletedTasksCreated(data, token) {
+    getAllCompletedTasksCreated() {
         return axios.get(GET_COMPLETED_TASKS, {
             headers: {
-                Authorization: `Bearer ${token}`,// Add the Bearer token to the headers
+                Authorization: `Bearer ${JWT_TOKEN}`,// Add the Bearer token to the headers
                 "Content-Type": "application/json"
             }
         });
     }
-    approveTask(token, taskId) {
+
+    getAllToBeApprovedTasksCreated() {
+        return axios.get(GET_PENDING_APPROVAL, {
+            headers: {
+                Authorization: `Bearer ${JWT_TOKEN}`,// Add the Bearer token to the headers
+                "Content-Type": "application/json"
+            }
+        });
+    }
+    approveTask( taskId) {
         return axios.post(`http://localhost:8080/tasks/${taskId}/approve`, "", {
+            headers: {
+                Authorization: `Bearer ${JWT_TOKEN}`,// Add the Bearer token to the headers
+            }
+        });
+    }
+    cancelTask(token, taskId) {
+        return axios.post(`http://localhost:8080/tasks/${taskId}/cancel`, "", {
             headers: {
                 Authorization: `Bearer ${token}`,// Add the Bearer token to the headers
             }

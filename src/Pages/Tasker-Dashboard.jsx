@@ -12,7 +12,7 @@ function useTaskerRedirect() {
     const navigate = useNavigate();
     const role = localStorage.getItem("userRole");
     if (role !== "TASKER") {
-        navigate("/fund-wallet");
+        navigate("/dashboard");
     }
 }
 

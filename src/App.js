@@ -21,6 +21,7 @@ import FundWalletModal from "./Pages/FundWalletModal";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import About from "./Pages/About";
 import Register from "./Pages/Register";
+import WalletView from "./Pages/WalletView";
 
 function App() {
   const [openNotification, setOpenNotification] = useState(false);
@@ -57,7 +58,7 @@ function App() {
               Component={EmailVerificationPage}
           ></Route>
           <Route
-              path="/resendEmailVerification"
+              path='/resendEmailVerification'
               Component={ResendEmailVerification}
           ></Route>
           <Route path="/login" Component={Login}></Route>
@@ -66,15 +67,17 @@ function App() {
               Component={EmailVerificationSuccessContainer}
           ></Route>
           <Route path="/view" Component={view}></Route>
+          <Route path="/wallet2" Component={wallet}></Route>
           <Route path="/reset-password/:token" Component={Reset}></Route>
           <Route path="/forget-password" Component={ForgetPassword}></Route>
-          <Route path="/wallet" Component={wallet}></Route>
+          <Route path="/wallet" Component={WalletView}></Route>
           <Route path="/fund-wallet" Component={FundWalletModal}></Route>
           <Route path="/dashboard" Component={dashboard}></Route>
           <Route path="/tasker/create-job" Component={CreateJob} />
           <Route path='/tasker' Component={Tasker}></Route>
           <Route path='/about' Component={About}></Route>
           <Route path='/register' Component={Register}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>

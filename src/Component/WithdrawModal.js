@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
 import "./css/WithdrawalModal.css";
 import WalletService from "../service/WalletService";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import SuccessPopModal from "./SuccessPopModal";
+import ErrorPopModal from "./ErrorPopModal";
 
 
-//TODO: Validate entries from form before making API call
-//TODO: Handle successful withdrawal-- success modal
-//TODO: Handle unsuccessful withdrawal-- error modal
 
 function WithdrawModal(props) {
   const [beneficiaryBankCode, setBeneficiaryBankCode] = useState("");
@@ -32,6 +33,12 @@ function WithdrawModal(props) {
 
   // Define walletBalance as a state variable
   const [walletBalance, setWalletBalance] = useState(0);
+
+
+  const handleModalClose = () => {
+    // Call the onClose callback function passed from parent
+    props.onClose();
+  }
 
   useEffect(() => {
     // Fetch wallet balance from API and update the state
@@ -60,6 +67,7 @@ function WithdrawModal(props) {
     // Check if amount to withdraw exceeds wallet balance
     if (parseInt(amount) > walletBalance) {
       setErrorMessage("Withdrawal amount exceeds wallet balance.");
+      handleOpenErrorDialog();
       return;
     }
     // make the requestdata
@@ -72,30 +80,138 @@ function WithdrawModal(props) {
       "narration": "Wallet withdrawal",
     };
     // Perform axios post call with withdrawal data
+    setIsLoading(true);
 
     WalletService.withdrawFromWallet(requestData, token)
         .then((response) => {
           setErrorMessage(response.data.error)
-          setApiResponse(response.data.message)
+          console.log(response.data);
+          if (response.data.status === "true") {
+            setTimeout(() => {
+              // Simulating successful withdrawal after 10 seconds
+              setIsLoading(false);
+
+            }, 2000);
+            setApiResponse(response.data.message)
+            handleOpen()
+
+          }
+          else {
+            setIsLoading(false);
+            setErrorMessage("Transaction failed.\n" +
+                " Please check your details and try again later.");
+            handleOpenErrorDialog();
+          }
           console.log(response.data.result);
           // Handle successful withdrawal
         })
         .catch((error) => {
+          setIsLoading(false);
           console.log(error);
+          setErrorMessage("Transaction failed.\n" +
+              " Please check your details and try again later.");
+          handleOpenErrorDialog();
         });
 
+
   }
+
+  //style for response modal
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    display: 'inline-flex',
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+
+    setOpen(true);
+  }
+  const handleClose = () => setOpen(false);
+
+  const [openErrorDialog, setOpenErrorDialog] = React.useState(false);
+  const handleOpenErrorDialog= () => setOpenErrorDialog(true);
+  const handleCloseErrorDialog = () => setOpenErrorDialog(false);
+
+
+  const [isLoading, setIsLoading] = useState(false); // state to track loading status
+
+
+  // Styles as variables
+  const loadingContainerStyle = {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    display: "flex",
+    alignItems: "center",
+    paddingRight: "8px", // Add some spacing to the right for the loading icon
+  };
+
+  const loadingSvgStyle = {
+    marginRight: "8px", // Add margin to the right for spacing
+  };
+
+  const loadingTextStyle = {
+    // Add styles for your loading text
+  };
     return (
         <div className="modal-default-modal-default" style={props.style}>
           <div className="modal-default-rectangle-1x">
             <div className="modal-default-frame-16421x">
               <p className="modal-default-withdraw-funds">Withdraw funds</p>
-              {errorMessage && <p>{errorMessage}</p>}
-                {apiResponse && <p>{apiResponse}</p>}
+              <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <SuccessPopModal myProp={apiResponse}/>
+                </Box>
+              </Modal>
+              <Modal
+                  open={openErrorDialog}
+                  onClose={handleCloseErrorDialog}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <ErrorPopModal myProp={errorMessage} />
+                </Box>
+              </Modal>
             </div>
 
             <div className="modal-default-frame-16355x">
-              <div className="modal-default-button-default" onClick={handleWithdrawal}>
+              <div
+                  className="modal-default-button-default"
+                  onClick={handleWithdrawal}
+                  style={{ position: "relative" }} // Add relative position to parent div
+              >
+                {isLoading && ( // Render loading animation and text when isLoading is true
+                    <div style={loadingContainerStyle}>
+                      <div className="modal-default-loading-svg" style={loadingSvgStyle}>
+                        {/* Replace with your SVG icon */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                        >
+                          <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1" />
+                        </svg>
+                      </div>
+                      <p className="modal-default-loading-text" style={loadingTextStyle}>
+                        Processing...
+                      </p>
+                    </div>
+                )}
                 <p className="modal-default-text">Withdraw</p>
               </div>
             </div>
@@ -103,7 +219,7 @@ function WithdrawModal(props) {
               <div className="modal-default-frame-16424x">
                 <div className="modal-default-frame-16353x">
                   <p className="modal-default-bank">Bank</p>
-                  <select value={beneficiaryBankCode} onChange={handleBankChange}>
+                  <select className="modal-default-bank-select" value={beneficiaryBankCode} onChange={handleBankChange}>
                     {banks.map((bank) => (
                         <option key={bank.code} value={bank.code}>
                           {bank.bankName}

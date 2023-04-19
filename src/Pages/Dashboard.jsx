@@ -11,7 +11,7 @@ const Dashboard = () => {
 
     const role = localStorage.getItem("userRole");
     if (role !== "DOER") {
-        navigate("/fund-wallet");
+        navigate("/tasker");
     }
     return <div className="dashboard-container">
         {/*<HeaderBar />*/}

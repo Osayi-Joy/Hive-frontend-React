@@ -3,19 +3,35 @@ import './dashboard.css'
 import DashboardService from "./DashboardService"
 import axios from 'axios';
 import { useEffect } from 'react';
+import TaskerService from "../../service/TaskerService";
 
 const View = () => {
 
+
     const [data, setData] = React.useState([]);
+
     useEffect(() => {
-        axios.get('http://localhost:8080/tasks/new_task')
-            .then((res) => {
-                setData(res.data.result);
-                console.log(res.data.result);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        if (localStorage.getItem('userRole') === 'TASKER') {
+           TaskerService.getAllNewTasksCreated()
+               .then((res) => {
+                   setData(res.data.result);
+                   console.log(res.data.result);
+               })
+               .catch((err) => {
+                   console.log(err);
+               })
+        }
+        else {
+            axios.get('http://localhost:8080/tasks/new_task')
+                .then((res) => {
+                    setData(res.data.result);
+                    console.log(res.data.result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+
     }, []);
 
     return <>
@@ -23,7 +39,7 @@ const View = () => {
             {
                 data.length !== 0 && data.map((index) => {
                     return <div className="dashboard-cleaning-service">
-                        <DashboardService 
+                        <DashboardService
                         jobType={index.jobType}
                         taskDescription={index.taskDescription}
                         budgetRate={index.budgetRate}
@@ -40,7 +56,7 @@ const View = () => {
             }
         </div>
     </>
-    
+
 }
- 
+
 export default View;

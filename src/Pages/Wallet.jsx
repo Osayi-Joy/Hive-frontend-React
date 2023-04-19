@@ -23,6 +23,8 @@ function Wallet(props) {
           console.log(error);
         });
   }, [token]);
+
+  //style for modal
   const style = {
     position: 'absolute',
     top: '50%',
@@ -53,7 +55,7 @@ function Wallet(props) {
               </div>
               <div className="wallet-frame-16453x">
                 <AvatarDefault className="wallet-avatar-default-1" />
-                <p className="wallet-hi-omotayo">Hi, Omotayo</p>
+                {/*<p className="wallet-hi-omotayo">Hi, Omotayo</p>*/}
               </div>
             </div>
           </div>
@@ -76,6 +78,9 @@ function Wallet(props) {
                 </div>
               </div>
               <div className="wallet-frame-16361x">
+                <p className="wallet-text-2" onClick={handleOpen}>
+                 Fund Wallet
+                </p>
               <p className="wallet-text-2" onClick={handleOpen}>
                 Withdraw to bank
               </p>

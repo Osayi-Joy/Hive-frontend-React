@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Input from '../Component/inputComp';
 import "../Pages/CSS/register.css";
 import {useForm} from 'react-hook-form'
@@ -7,6 +7,9 @@ import * as yup from 'yup'
 import {useNavigate} from "react-router-dom"
 import axios from 'axios';
 import LoginAndRegisterNavBar from "../Component/LoginAndRegisterNavBar/LoginAndRegisterNavBar";
+import ErrorPopModal from "../Component/ErrorPopModal";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 
 
 const schema = yup.object({
@@ -42,6 +45,11 @@ const schema = yup.object({
 const Register = () => {
     // e.preventDefault();
 
+    const [openErrorDialog, setOpenErrorDialog] = React.useState(false);
+    const handleOpenErrorDialog= () => setOpenErrorDialog(true);
+    const handleCloseErrorDialog = () => setOpenErrorDialog(false);
+    const [errorMessage, setErrorMessage] = useState("");
+
     const {
         handleSubmit,
         register,
@@ -51,26 +59,31 @@ const Register = () => {
     });
     const formSubmit = async (data) => {
         try {
-            const response = await axios.post("http://localhost:5001/auth/register", {
+            const response = await axios.post("http://localhost:8080/auth/register", {
                     fullName: data.fullname,
                     email: data.email,
                     phoneNumber: data.phonenumber,
                     password: data.password,
+                    confirmPassword: data.password,
                     address: data.address,
                     role: data.role,
-                    //   validId: data.identification[0]
+                    validId: data.email,
                 })
             ;
 
-            if (response.ok) {
+            if (response.created) {
                 const result = await response.json();
                 console.log(result);
                 console.log("success");
                 routeChange(); // Redirect to another page
             } else {
+                // FIx the flow above
+                routeChange();
                 console.error(`HTTP error: ${response.status}`);
             }
         } catch (error) {
+            setErrorMessage(error.response.data.message);
+            handleOpenErrorDialog();
             console.error(`Error: ${error}`);
         }
     };
@@ -82,14 +95,35 @@ const Register = () => {
 
     let navigate = useNavigate();
     const routeChange = () => {
-        let path = `/confirm-email`;
+        let path = `/emailVerificationPage`;
         navigate(path);
     }
 
+    //style for response modal
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        bgcolor: 'background.paper',
+        boxShadow: 24,
+        p: 4,
+        display: 'inline-flex',
+    };
 
     return (
         <>
             <LoginAndRegisterNavBar/>
+            <Modal
+                open={openErrorDialog}
+                onClose={handleCloseErrorDialog}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <ErrorPopModal myProp={errorMessage} />
+                </Box>
+            </Modal>
             <div className="sign-up">
                 <form onSubmit={handleSubmit(formSubmit)}>
                     <Input

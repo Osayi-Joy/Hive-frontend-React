@@ -6,13 +6,12 @@ import { useEffect } from 'react';
 import TaskerService from "../../service/TaskerService";
 import DoerService from "../../service/DoerService";
 
-const Ongoing = () => {
-
+const PendingApprovalTab = () => {
 
     const [data, setData] = React.useState([]);
 
     useEffect(() => {
-            TaskerService.getAllOngoingTasksCreated()
+            TaskerService.getAllToBeApprovedTasksCreated()
                 .then((res) => {
                     setData(res.data.result);
                     console.log(res.data.result);
@@ -20,7 +19,6 @@ const Ongoing = () => {
                 .catch((err) => {
                     console.log(err);
                 })
-
     }, []);
 
     return <>
@@ -48,4 +46,4 @@ const Ongoing = () => {
 
 }
 
-export default Ongoing;
+export default PendingApprovalTab;

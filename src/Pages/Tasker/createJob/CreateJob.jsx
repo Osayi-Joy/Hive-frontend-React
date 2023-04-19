@@ -8,6 +8,9 @@ import axios from "axios";
 import { ProfileModal } from "../../../Component/profileModal/ProfileModal";
 import jwt_decode from "jwt-decode";
 import "react-datepicker/dist/react-datepicker.css";
+import Box from "@mui/material/Box";
+import SuccessPopModal from "../../../Component/SuccessPopModal";
+import Modal from "@mui/material/Modal";
 
 function CreateJob() {
  
@@ -23,6 +26,38 @@ function CreateJob() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [apiResponse, setApiResponse] = useState("");
+  const [open, setOpen] = React.useState(false);
+  //style for response modal
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    display: 'inline-flex',
+  };
+
+
+  const role = localStorage.getItem("userRole");
+  if (role !== "TASKER") {
+    navigate("/dashboard");
+  }
+
+
+  const handleOpen = () => {
+
+    setOpen(true);
+  }
+  const handleClose = () => {
+    setOpen(false);
+    // when the modal is closed, navigate to the dashboard
+    navigate("/tasker");
+  }
+
 
 
 
@@ -87,11 +122,19 @@ function CreateJob() {
         })
         .then((response) => {
           // Handle successful task creation
+          setApiResponse("Task Created Successfully");
+          handleOpen();
           console.log(response.data.result);
         })
         .catch((error) => console.log(error));
     }
   };
+
+  if (!token) {
+    navigate("/login");
+    return null;
+  }
+
   return (
     <div className="create-job-ccontainer">
       {/* <NotificationBox toggleNotification={toggleNotification} settoggleNotification={settoggleNotification} /> */}
@@ -223,6 +266,16 @@ function CreateJob() {
                 Add Task
               </button>
             </form>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <SuccessPopModal myProp={apiResponse}/>
+              </Box>
+            </Modal>
           </div>
           {/* RIGHT COLUMN SECTIONS  */}
           <div className="display-image-section">

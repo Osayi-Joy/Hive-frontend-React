@@ -1,5 +1,6 @@
 import React from 'react'
 import './UserDashboard.css'
+import {Link} from 'react-router-dom';
 
 function UserDashboard() {
   return (
@@ -10,6 +11,12 @@ function UserDashboard() {
       <p className="task-created-aservice">
         A service provider will accept a task.
       </p>
+        <Link to="/tasker/create-job">
+            <button className="gotocreate-btn">
+                CREATE TASK
+            </button>
+        </Link>
+
     </div>
   )
 }

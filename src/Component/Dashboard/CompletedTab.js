@@ -4,23 +4,20 @@ import DashboardService from "./DashboardService"
 import axios from 'axios';
 import { useEffect } from 'react';
 import TaskerService from "../../service/TaskerService";
-import DoerService from "../../service/DoerService";
 
-const Ongoing = () => {
-
+const CompletedTab = () => {
 
     const [data, setData] = React.useState([]);
-
     useEffect(() => {
-            TaskerService.getAllOngoingTasksCreated()
-                .then((res) => {
-                    setData(res.data.result);
-                    console.log(res.data.result);
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
 
+        TaskerService.getAllCompletedTasksCreated()
+            .then((res) => {
+                setData(res.data.result);
+                console.log(res.data.result);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }, []);
 
     return <>
@@ -48,4 +45,4 @@ const Ongoing = () => {
 
 }
 
-export default Ongoing;
+export default CompletedTab;

@@ -1,6 +1,6 @@
 .modal-default-modal-default {
     width: 632px;
-    height: 445px;
+    height: 500px;
     box-sizing: border-box;
     filter: drop-shadow(0px 12px 16px -4px rgba(33, 33, 33, 0.1));
     display: flex;
@@ -15,9 +15,9 @@
   }
   
   .modal-default-rectangle-1x {
-    height: 445px;
+    height: 500px;
     box-sizing: border-box;
-    padding-top: 24px;
+    padding-top: 50px;
     padding-bottom: 29px;
     padding-left: 20px;
     padding-right: 25px;
@@ -75,6 +75,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 6px;
+    margin-top: 20px;
   }
   
   .modal-default-text {
@@ -179,20 +180,12 @@
   }
   
   .modal-default-button-default-2 {
-    width: 587px;
-    box-sizing: border-box;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 16px;
-    padding-right: 426px;
-    background-color: white;
-    box-shadow: 0px 0px 0px 1px rgba(152, 162, 179, 1) inset;
-    box-shadow-width: 1px;
-    overflow: clip;
-    display: flex;
-    align-items: center;
-    border-radius: 6px;
-    color: rgba(152, 162, 179, 1);
+    height: 44px;
+    border-radius: 5px;
+    color: rgba(16, 24, 40, 1);
+    padding: 12px 44px 12px 51px;
+    border-width: 1px;
+    background: url('/src/Assets/Naira.png') no-repeat scroll 13px 10px;
   }
   
   .modal-default-text-2 {
@@ -243,3 +236,36 @@
     height: 20px;
     width: 89px;
   }
+.modal-default-button-default2{
+  width: 398px;
+  box-sizing: border-box;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: white;
+  overflow: clip;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  border-color: rgba(21, 112, 239, 1);
+  border-width: 15px;
+  color: rgba(21, 112, 239, 1);
+  font-weight: 600;
+
+}
+
+.modal-default-bank-select{
+  height: 44px;
+  border-radius: 5px;
+  color: rgba(16, 24, 40, 1);
+  padding-left: 5px;
+  border-width: 1px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  color: #1a1a1a;
+  color: rgba(16, 24, 40, 1);
+
+}

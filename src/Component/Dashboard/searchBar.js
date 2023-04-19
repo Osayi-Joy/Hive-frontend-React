@@ -2,8 +2,11 @@
 import './dashboard.css'
 import Emoji from './Emoji.svg'
 
+
+
+
 const search = () => {
-    const username = "Omotayo";
+    const username = localStorage.getItem("fullName");
     return <div className="search-menu">
         <div className="dashboard-content">
             <h2>Welcome {username} <img src={Emoji} alt="Hive Emoji" /></h2>

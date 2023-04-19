@@ -4,6 +4,7 @@ const GET_ALL_NEW_TASKS = "http://localhost:8080/tasks/new_task";
 const GET_ONGOING_TASKS = "http://localhost:8080/tasks/user/ongoing_task";
 const GET_COMPLETED_TASKS = "http://localhost:8080/tasks/user/completed_task";
 const GET_PENDING_APPROVAL_TASKS = "http://localhost:8080/tasks/user/pending_approval_task";
+const CANCEL_TASK = "http://localhost:8080/tasks/cancel_task";
 
 
 class DoerService {
@@ -43,13 +44,14 @@ class DoerService {
         });
 
     }
-        acceptTask(token, taskId) {
-            return axios.post(`http://localhost:8080/tasks/${taskId}/accept`, "", {
-                headers: {
-                    Authorization: `Bearer ${token}`,// Add the Bearer token to the headers
-                }
-            });
-        }
+
+    acceptTask(token, taskId) {
+        return axios.post(`http://localhost:8080/tasks/${taskId}/accept`, "", {
+            headers: {
+                Authorization: `Bearer ${token}`,// Add the Bearer token to the headers
+            }
+        });
+    }
 
     markTaskForApproval(token, taskId) {
         return axios.post(`http://localhost:8080/tasks/${taskId}/complete`, "", {
@@ -58,6 +60,7 @@ class DoerService {
             }
         });
     }
+
 
 }
 

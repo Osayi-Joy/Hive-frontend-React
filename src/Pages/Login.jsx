@@ -6,6 +6,7 @@ import HeaderBar from "../Component/HeaderBar";
 import {Link} from 'react-router-dom'
 import {FaSpinner} from 'react-icons/fa';
 import LoginAndRegisterNavBar from "../Component/LoginAndRegisterNavBar/LoginAndRegisterNavBar";
+import jwt_decode from "jwt-decode";
 
 
 const Login = () => {
@@ -70,6 +71,10 @@ const Login = () => {
             if (response.ok) {
                 localStorage.setItem("token", data.result.token);
 
+                const decodedToken = jwt_decode(data.result.token);
+                const fullName = decodedToken.fullName;
+
+                localStorage.setItem("fullName", fullName);
 
                 const roles = JSON.parse(window.atob(localStorage.getItem("token").split(".")[1]))
                     .roles;
