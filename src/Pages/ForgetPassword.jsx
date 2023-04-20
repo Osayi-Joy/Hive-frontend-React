@@ -103,10 +103,11 @@ const ForgetPassword = () => {
           </div>
         </div>
       </div>
-      <div className="footer">
-        <Footer />
-      </div>
+      {/*<div className="footer">*/}
+      {/*<Footer />*/}
+      {/*</div>*/}
     </div>
+
   );
 };
 

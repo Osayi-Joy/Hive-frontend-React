@@ -86,7 +86,8 @@ const HeaderBar = () => {
                             <p>{user.split(' ')[0]}</p>
                         </div>
                     </div>
-                    <Link className="item logout"><h6>logout</h6> </Link>
+                    <Link className="logout"><h6>Logout</h6> </Link>
+
                 </div>
             ) : (
                 <div className="navbar-links-container">

@@ -604,7 +604,6 @@ span {
   right: 2rem;
   top: 31px;
   width: 70%;
-  font-size: 1.5rem;
   /*background-color: yellow;*/
 
   /*flex-grow: 2;*/
@@ -618,10 +617,20 @@ span {
   background-color: grey;
   color:white;
   border-radius: 5px;
-
 }
-.userloginMenu .logout{
+.userloginMenu .task{
+  order: 1 ;
+}
+.userloginMenu .wallet{
+  order: 2 ;
+}
+.userloginMenu .userDetails_notification{
+  order:3
+}
 
+.userloginMenu .logout{
+   order: 4 ;
+  margin-top: 1.5rem;
 }
 .userloginMenu .viewAllTask {
   /*width: 80%;*/
@@ -651,7 +660,10 @@ span {
   height: 32px;
   flex: none;
   order: 1;
-  flex-grow: 0;
+  /*background-color: yellow;*/
+  /*width: 40%;*/
+  justify-content: space-around;
+
 }
 
 .userDetails_notification FontAwesomeIcon {
