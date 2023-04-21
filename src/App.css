@@ -631,8 +631,15 @@ span {
 
 .userloginMenu .logout{
    order: 3 ;
-
-
+  text-decoration: none;
+  background: #0d6efd;
+  padding: 8px;
+  margin-bottom: 10px;
+  padding-top: 14px;
+  padding-right: 14px;
+  padding-left: 14px;
+  border-radius: 11px;
+  color: white;
 }
 .userloginMenu .viewAllTask {
   /*width: 80%;*/
@@ -652,6 +659,10 @@ span {
   order: 0;
   flex-grow: 0;
 }
+.userloginMenu .viewAllTask p {
+  text-decoration: none;
+}
+
 .userDetails_notification {
   display: flex;
   flex-direction: row;
@@ -696,4 +707,11 @@ span {
   background: url("../src//Assets/john-doe-image.png");
   border-radius: 200px;
   background-color: red;
+}
+
+.item wallet a{
+  text-decoration: none;
+}
+.item wallet p {
+  color: black;
 }

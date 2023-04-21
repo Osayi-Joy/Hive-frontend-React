@@ -159,12 +159,12 @@ const HeaderBar = () => {
 
             {isLogin? (
                 <div className="userloginMenu">
-                    <Link to={linkPath} className="item task">
-                        <p className="viewAllTask">Tasks</p>
+                    <Link style={{textDecoration:"none",color:"black",fontSize:"18px"}} to={linkPath} className="item task">
+                        <p style={{color:"black",fontSize:"18px"}} className="viewAllTask">Tasks</p>
                     </Link>
 
-                    <Link to="/wallet" className="item wallet">
-                        <p className="viewAllTask">Wallet</p>
+                    <Link style={{textDecoration:"none",color:"black",fontSize:"18px"}} to="/wallet" className="item wallet" >
+                        <p style={{color:"black",fontSize:"18px"}} className="viewAllTask">Wallet</p>
                     </Link>
 
                     <div className="item userDetails_notification">
@@ -178,7 +178,7 @@ const HeaderBar = () => {
                             </div>
                             <p>{user.split(' ')[0]}</p>
                         </div>
-                        <Link onClick={handleLogout} to="/login" className="logout"><h6>Logout</h6></Link>
+                        <Link style={{textDecoration:"none"}} onClick={handleLogout} to="/login" className="logout"><h6>Logout</h6></Link>
 
                     </div>
 
