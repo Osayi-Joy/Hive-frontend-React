@@ -136,6 +136,8 @@ nav {
 .home-image-section {
   margin-left: 400px;
   max-width: 600px;
+  margin-top: 150px;
+  margin-bottom: 83px;
 }
 .for-button {
   position: relative;
@@ -489,7 +491,10 @@ span {
   .home-image-section,
   .about-section-image-container {
     width: 100%;
-    margin-left: auto;
+    margin-left: 463px;
+    max-width: 600px;
+    margin-top: 133px;
+    margin-bottom: 52px;
   }
 
   .primary-heading {
@@ -614,23 +619,20 @@ span {
 }
 .userloginMenu .item:hover{
   cursor:pointer;
-  background-color: grey;
-  color:white;
-  border-radius: 5px;
+
 }
-.userloginMenu .task{
+.userloginMenu .notication{
   order: 1 ;
 }
-.userloginMenu .wallet{
+.userloginMenu .userDetails{
   order: 2 ;
 }
-.userloginMenu .userDetails_notification{
-  order:3
-}
+
 
 .userloginMenu .logout{
-   order: 4 ;
-  margin-top: 1.5rem;
+   order: 3 ;
+
+
 }
 .userloginMenu .viewAllTask {
   /*width: 80%;*/

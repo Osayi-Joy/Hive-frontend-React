@@ -1,15 +1,18 @@
 
 import './dashboard.css'
 import Emoji from './Emoji.svg'
-
-
-
+// import jwt_decode from "jwt-decode";
+//
+//
+// const token = localStorage.getItem("token");
+// const decodedToken = jwt_decode(token);
+// const fullName = decodedToken.fullName;
 
 const search = () => {
-    const username = localStorage.getItem("fullName");
+    // const username = localStorage.getItem("fullName");
     return <div className="search-menu">
         <div className="dashboard-content">
-            <h2>Welcome {username} <img src={Emoji} alt="Hive Emoji" /></h2>
+            <h2>Welcome {"fullName"} <img src={Emoji} alt="Hive Emoji" /></h2>
             <div className="dashboard-search-component">
                 <h2>New Job Listing</h2>
                 <input type="text" placeholder="Search for a user" />

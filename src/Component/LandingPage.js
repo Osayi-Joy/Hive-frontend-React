@@ -17,14 +17,14 @@ const LandingPage = () => {
                 <div className="about-buttons-container">
                     <Link to={'/register'}>
                         <button className="secondary-button">
-                            Sign up as a Doer
+                            Get Started
                         </button>
                     </Link>
-                    <Link to={'/register'}>
-                        <button className="primary-button">
-                            Sign up as a Tasker
-                        </button>
-                    </Link>
+                    {/*<Link to={'/register'}>*/}
+                    {/*    <button className="primary-button">*/}
+                    {/*        Sign up as a Tasker*/}
+                    {/*    </button>*/}
+                    {/*</Link>*/}
                 </div>
                 </div>
             </div>

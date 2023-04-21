@@ -6,7 +6,9 @@
     /* flex-direction: column;
     justify-content: space-around; */
     align-items: flex-start;
-    padding: 24px;
+    padding-left: 50px;
+    padding-top:10px;
+    /*padding: 24px;*/
     font-family: Inter;
     color: rgba(16, 24, 40, 1);
     text-align: left;
@@ -33,6 +35,7 @@
     flex-direction: column;
     align-items: flex-start;
     font-weight: 400;
+    padding-bottom: 8px;
   }
   
   .service-text-frame-16472x {

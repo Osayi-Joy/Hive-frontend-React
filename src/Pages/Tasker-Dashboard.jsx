@@ -8,15 +8,19 @@ import { useNavigate } from "react-router-dom";
 import '../Component/Dashboard/dashboard.css'
 
 
+
 function useTaskerRedirect() {
-    const navigate = useNavigate();
-    const role = localStorage.getItem("userRole");
-    if (role !== "TASKER") {
-        navigate("/dashboard");
-    }
+
 }
 
 function Tasker() {
+
+    const role = localStorage.getItem("userRole");
+    const navigate = useNavigate();
+
+    if (role === "DOER") {
+        navigate("/dashboard");
+    }
     useTaskerRedirect();
     // const  navigate = useNavigate();
     //

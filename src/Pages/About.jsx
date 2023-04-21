@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./CSS/About.css";
 import NavBar from "../Component/NavBar";
 import Footer from "../Component/Footer";
 import blackman from "../Assets/blackman.png";
+import NotificationBox from "../Component/NotificationBox/NotificationBox";
 
 const About = () => {
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Logo from "../Assets/logo.svg";
 import {HiOutlineBars3} from "react-icons/hi2";
 import Box from "@mui/material/Box";
@@ -16,7 +16,12 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBell} from "@fortawesome/free-regular-svg-icons";
+import axios from 'axios';
+import {useNavigation} from "react-router-dom";
+import NotificationPopover from "./NotificationPopover"
+import NotificationService from "../service/NotificationService";
 import jwt_decode from "jwt-decode";
+// import {useHistory} from 'react-router-dom'
 
 
 const HeaderBar = () => {
@@ -25,6 +30,54 @@ const HeaderBar = () => {
     const [isLogin, setIsLogin] = useState(false);
     const [user, setUser] = useState("");
     const [userEmail, setUserEmail] = useState("");
+
+
+    const role = localStorage.getItem('userRole');
+
+
+    const [renderKey, setRenderKey] = useState(0);
+
+    useEffect(() => {
+        setRenderKey(Math.random());
+    }, []);
+
+
+
+    let linkPath = '/dashboard'; // default link path
+
+    if (role === 'TASKER') {
+        linkPath = '/tasker';
+    }
+
+    useEffect(() => {
+        const currentUser = localStorage.getItem("token");
+        if (currentUser) {
+            const decodedToken = jwt_decode(currentUser);
+            setUser(decodedToken.fullName)
+            setUserEmail(decodedToken.email)
+            setIsLogin(true);
+        }
+    })
+        // }
+
+    const [notifications, setNotifications] = useState([]);
+    const userDto = JSON.parse(localStorage.getItem("userDto"));
+    // setUser(localStorage.getItem("fullName"))
+    const token = localStorage.getItem("token");
+
+    let isLoggedIn = false;
+    if (localStorage.getItem("isLoggedIn") ==="true")
+    { isLoggedIn = true; }
+
+    useEffect(() => {
+        NotificationService.getAllNotifications({}, token)
+            .then((response) => {
+                setNotifications(response.data.result.slice(0, 3));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
 
     const menuOptions = [
@@ -49,44 +102,85 @@ const HeaderBar = () => {
             link: "/register",
         },
     ];
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        const currentUser = localStorage.getItem("token");
-        if (currentUser) {
-            const decodedToken = jwt_decode(currentUser);
-            setUser(decodedToken.fullName)
-            setUserEmail(decodedToken.email)
-            setIsLogin(true);
-        }
-    }, [])
+    const handleLogout = () => {
+        // Remove the token from local storagese
+        navigate('/login');
+        isLoggedIn=false;
+
+        localStorage.removeItem('token');
+        // Send a logout request to the server
+        // axios.post('/logout')
+        //     .then(() => {
+        //         // Redirect to the login page
+        //         navigate('/login');
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
+    };
+
+    // useEffect(() => {
+    //     const currentUser = localStorage.getItem("token");
+    //     // if (currentUser) {
+    //     //     const decodedToken = jwt_decode(currentUser);
+    //     //     setUser(decodedToken.fullName)
+    //     //     setUserEmail(decodedToken.email)
+    //     //     setIsLogin(true);
+    //     // }
+    //
+    //     // const userStatus = localStorage.getItem("isLoggedIn");
+    //     // if (userDto.isLoggedIn) {
+    //     //     // const decodedToken = jwt_decode(currentUser);
+    //     //     // const decodedToken = jwt_decode(currentUser);
+    //     //     // setUser(decodedToken.fullName)
+    //     //     // setUserEmail(decodedToken.email)
+    //     //     setIsLogin(true);
+    //
+    //         NotificationService.getAllNotifications({}, localStorage.getItem("token"))
+    //             .then((response) => {
+    //                 setNotifications(response.data.result.slice(0, 3));
+    //             })
+    //             .catch((error) => {
+    //                 console.log("I was called with")
+    //                 console.log(error);
+    //             });
+    //     }
+    // }, [])
 
     return (
-        <nav>
+        <nav key={renderKey}>
             <div className="nav-logo-container">
+                <a href="http://localhost:3000/">
                 <img src={Logo} alt="Hive logo navebar"/>
+                </a>
             </div>
-            {isLogin ? (
+
+            {isLogin? (
                 <div className="userloginMenu">
-
-                    <div className="item task">
+                    <Link to={linkPath} className="item task">
                         <p className="viewAllTask">Tasks</p>
-                    </div>
+                    </Link>
 
-                    <div className="item wallet">
+                    <Link to="/wallet" className="item wallet">
                         <p className="viewAllTask">Wallet</p>
-                    </div>
+                    </Link>
 
                     <div className="item userDetails_notification">
                         <div className="notificationIcon">
-                            <FontAwesomeIcon icon={faBell}/>
+                            <NotificationPopover notify={notifications}/>
+                            {/*<FontAwesomeIcon icon={faBell}/>*/}
+
                         </div>
                         <div className="userDetails">
                             <div className="user-image">
                             </div>
                             <p>{user.split(' ')[0]}</p>
                         </div>
+                        <Link onClick={handleLogout} to="/login" className="logout"><h6>Logout</h6></Link>
+
                     </div>
-                    <Link className="logout"><h6>Logout</h6> </Link>
 
                 </div>
             ) : (
@@ -95,7 +189,7 @@ const HeaderBar = () => {
                     <Link to={"/register"}>
                         <button className="primary-button" style={{backgroundColor: "#1570EF"}}>Register</button>
                     </Link>
-                    <Link to={"/login"}>
+                    <Link onClick={handleLogout} to={"/login"}>
                         <button className="primary-button" style={{backgroundColor: "#1570EF"}}>Login</button>
                     </Link>
                 </div>

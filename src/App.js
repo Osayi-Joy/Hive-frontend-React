@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './Component/LandingPage';
 import Login from './Pages/Login';
+import EmailVerification from './Pages/EmailVerfication'
 import EmailVerificationPage from './Pages/EmailVerificatonPage';
 import ResendEmailVerification from './Pages/ResendEmailVerificaton';
 import EmailVerificationSuccessContainer from './Pages/EmailVerificationSuccessContainer';
@@ -55,8 +56,8 @@ function App() {
           <Route path="/" Component={LandingPage}></Route>
           <Route path="/home" Component={LandingPage}></Route>
           <Route
-              path="/emailVerificationPage"
-              Component={EmailVerificationPage}
+              path="/verifyRegistration"
+              Component={EmailVerification}
           ></Route>
           <Route
               path='/resendEmailVerification'

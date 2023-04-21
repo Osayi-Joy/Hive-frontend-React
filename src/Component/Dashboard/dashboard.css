@@ -113,13 +113,13 @@
   .dashboard-cleaning-service{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    /* padding: 24px; */
+    justify-content: center; /* center vertically */
+    align-items: flex-start; /* align left horizontally */
     gap: 32px;
-    width: 30%;
+    width: 35%;
     height: 345px;
     margin: 15px;
+    border-radius: 34px;
     background: #FFFFFF;
   }
 

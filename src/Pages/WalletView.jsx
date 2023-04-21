@@ -10,6 +10,9 @@ function WalletView(props) {
     // get token from local storage to use in the header callback
     const token = localStorage.getItem("token");
 
+    const [count, setCount] = useState(0);
+
+
     const handleRefresh = () => {
         // Add a timeout of 2 seconds (2000 milliseconds)
             // Call window.location.reload() after 2 seconds

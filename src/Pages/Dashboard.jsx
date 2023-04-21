@@ -7,10 +7,10 @@ import {useNavigate} from "react-router-dom";
 
 const Dashboard = () => {
 
-    const  navigate = useNavigate();
-
     const role = localStorage.getItem("userRole");
-    if (role !== "DOER") {
+    const navigate = useNavigate();
+
+    if (role === "TASKER") {
         navigate("/tasker");
     }
     return <div className="dashboard-container">

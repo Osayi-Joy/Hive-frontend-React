@@ -27,7 +27,7 @@ const PendingApprovalTab = () => {
                 data.length !== 0 && data.map((index) => {
                         return <div className="dashboard-cleaning-service">
                             <DashboardService
-                                jobType={index.jobType}
+                                jobType={index.jobType.toUpperCase()}
                                 taskDescription={index.taskDescription}
                                 budgetRate={index.budgetRate}
                                 taskDuration={index.taskDuration.split('T')[0]}

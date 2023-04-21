@@ -12,13 +12,16 @@
   
   .view-job-all-view-job {
     width: 600px;
-    height: 600px;
+    height: 550px;
     border-radius: 12px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
     flex-direction: column;
-    padding: 25px;
+    /*padding: 25px;*/
+    padding-left: 40px;
+    padding-top: 39px;
+    padding-right: 40px;
   }
   
   .view-job-task-details {
@@ -28,6 +31,7 @@
     margin-top: 10px;
     color: rgba(16, 24, 40, 1);
     font-weight: 400;
+    margin-bottom: 10px;
   }
   
   .view-job-task-details-1 {

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./CSS/login.css";
 import "../Pages/CSS/login.css";
 import icon from "../Assets/Icon.png";
@@ -9,13 +9,17 @@ import LoginAndRegisterNavBar from "../Component/LoginAndRegisterNavBar/LoginAnd
 import jwt_decode from "jwt-decode";
 
 
-const Login = () => {
+
+const Login = defaultValue => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
 
     const handleSubmit = async (e) => {
@@ -69,12 +73,19 @@ const Login = () => {
             const data = await response.json();
 
             if (response.ok) {
-                localStorage.setItem("token", data.result.token);
+
 
                 const decodedToken = jwt_decode(data.result.token);
                 const fullName = decodedToken.fullName;
 
+                localStorage.setItem("token", data.result.token);
+                localStorage.setItem("isLoggedIn", "true");
                 localStorage.setItem("fullName", fullName);
+
+
+                const userDto = {token: data.result.token, isLoggedIn: true, fullName: fullName};
+
+                localStorage.setItem("userDto", JSON.stringify(userDto));
 
                 const roles = JSON.parse(window.atob(localStorage.getItem("token").split(".")[1]))
                     .roles;
@@ -96,10 +107,22 @@ const Login = () => {
         }
     };
 
+    const [renderKey, setRenderKey] = useState(0);
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        setCount((prevCount) => prevCount + 1);
+    }, []);
+
+    useEffect(() => {
+        if (count === 1) {
+            window.location.reload();
+        }
+    }, [count]);
     return (
         <>
             {/*<LoginAndRegisterNavBar/>*/}
-            <div style={{padding: "7rem 6rem", backgroundColor: "#F2F4F7"}} className="login-container">
+            <div key={renderKey} style={{padding: "7rem 6rem", backgroundColor: "#F2F4F7"}} className="login-container">
 
                 <div className="form-box">
                     <h2>Hi, Welcome back</h2>
