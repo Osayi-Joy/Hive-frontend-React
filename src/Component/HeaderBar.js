@@ -152,9 +152,9 @@ const HeaderBar = () => {
     return (
         <nav key={renderKey}>
             <div className="nav-logo-container">
-                <a href="http://localhost:3000/">
+                <Link to={"/"}>
                 <img src={Logo} alt="Hive logo navebar"/>
-                </a>
+                </Link>
             </div>
 
             {isLogin? (

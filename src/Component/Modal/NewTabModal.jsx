@@ -61,15 +61,14 @@ function ChildModal(props) {
                             Cancel Task
                         </button>
                     ) : (
-                        <button className="dashboard-button" onClick={handleAccept}>
+                        <button className="dashboard-button-popup" onClick={handleAccept}>
                             Accept Task
                         </button>
                     )}
                 </>
 
-
-                <button className="dashboard-primary-button" onClick={handleClose}>
-                </button>
+                {/*<button className="dashboard-primary-button" onClick={handleClose}>*/}
+                {/*</button>*/}
             </div>
             <Modal
                 open={open}

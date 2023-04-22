@@ -50,11 +50,11 @@ function ChildModal(props) {
             <div className="modal-button">
                 <>
                     {userRole === "TASKER" ? (
-                        <button className="dashboard-button" onClick={handleClose}>
+                        <button className="dashboard-button-popup" onClick={handleClose}>
                             Close
                         </button>
                     ) : (
-                        <button className="dashboard-button" onClick={handleComplete}>
+                        <button className="dashboard-button-popup" onClick={handleComplete}>
                             Mark Task As Completed
                         </button>
                     )}
