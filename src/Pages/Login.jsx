@@ -116,7 +116,7 @@ const Login = defaultValue => {
 
     useEffect(() => {
         if (count === 1) {
-            window.location.reload();
+            // window.location.reload();
         }
     }, [count]);
     return (
