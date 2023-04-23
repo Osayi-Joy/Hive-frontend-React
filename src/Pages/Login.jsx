@@ -55,10 +55,13 @@ const Login = defaultValue => {
     const handleSuccessClose = () => {
 
         setOpenSuccess(false);
+        localStorage.setItem("isLoggedIn", "false")
+
+        console.log(localStorage.getItem("isLoggedIn"));
 
         // when the modal is closed, navigate to the login
 
-        navigate("/");
+        navigate("/login");
 
     };
 
@@ -119,7 +122,8 @@ const Login = defaultValue => {
                 const fullName = decodedToken.fullName;
                 const verifiedStatus = decodedToken.verifiedStatus;
 
-
+                localStorage.setItem("token", data.result.token);
+                localStorage.setItem("fullName", fullName);
                 localStorage.setItem("verifiedStatus", verifiedStatus);
 
 
@@ -130,17 +134,16 @@ const Login = defaultValue => {
                 const roles = JSON.parse(window.atob(localStorage.getItem("token").split(".")[1]))
                     .roles;
 
-                localStorage.setItem("token", data.result.token);
-                localStorage.setItem("isLoggedIn", "true");
-                localStorage.setItem("fullName", fullName);
-
                 console.log(verifiedStatus);
 
                 if (verifiedStatus!==true) {
                     handleOpenSuccess();
+                    localStorage.setItem("isLoggedIn", "false");
                     return "";
 
                 }
+                localStorage.setItem("isLoggedIn", "true");
+                console.log("i reached here");
 
                 if (roles.includes("TASKER")) {
                     localStorage.setItem("userRole", "TASKER")

@@ -55,7 +55,12 @@ const HeaderBar = () => {
             const decodedToken = jwt_decode(currentUser);
             setUser(decodedToken.fullName)
             setUserEmail(decodedToken.email)
-            setIsLogin(true);
+            const verifiedStatus = decodedToken.verifiedStatus;
+            if (verifiedStatus ===true) {
+                setIsLogin(true);
+                console.log(decodedToken);
+            }
+            console.log( "test");
         }
     })
         // }
@@ -68,7 +73,7 @@ const HeaderBar = () => {
     let isLoggedIn = false;
     if (localStorage.getItem("isLoggedIn") ==="true")
     { isLoggedIn = true; }
-
+    console.log(localStorage.getItem("isLoggedIn") +"test");
     useEffect(() => {
         NotificationService.getAllNotifications({}, token)
             .then((response) => {
