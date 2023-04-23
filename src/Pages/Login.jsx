@@ -7,6 +7,10 @@ import {Link} from 'react-router-dom'
 import {FaSpinner} from 'react-icons/fa';
 import LoginAndRegisterNavBar from "../Component/LoginAndRegisterNavBar/LoginAndRegisterNavBar";
 import jwt_decode from "jwt-decode";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import SuccessPopModal from "../Component/SuccessPopModal";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -19,8 +23,44 @@ const Login = defaultValue => {
     const [isLoading, setIsLoading] = useState(false);
     // const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [openSuccess, setOpenSuccess] = React.useState(false);
+    const style = {
 
+        position: "absolute",
 
+        top: "50%",
+
+        left: "50%",
+
+        transform: "translate(-50%, -50%)",
+
+        bgcolor: "background.paper",
+
+        boxShadow: 24,
+
+        p: 4,
+
+        display: "inline-flex",
+
+    };
+    const verifyMessage = " Verify your email";
+    let navigate = useNavigate();
+
+    const instruction =
+
+        "Hi there, you have to verify your email before you can login. Please check your email for the verification link.";
+
+    const handleOpenSuccess = () => setOpenSuccess(true);
+
+    const handleSuccessClose = () => {
+
+        setOpenSuccess(false);
+
+        // when the modal is closed, navigate to the login
+
+        navigate("/");
+
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,10 +117,10 @@ const Login = defaultValue => {
 
                 const decodedToken = jwt_decode(data.result.token);
                 const fullName = decodedToken.fullName;
+                const verifiedStatus = decodedToken.verifiedStatus;
 
-                localStorage.setItem("token", data.result.token);
-                localStorage.setItem("isLoggedIn", "true");
-                localStorage.setItem("fullName", fullName);
+
+                localStorage.setItem("verifiedStatus", verifiedStatus);
 
 
                 const userDto = {token: data.result.token, isLoggedIn: true, fullName: fullName};
@@ -89,6 +129,19 @@ const Login = defaultValue => {
 
                 const roles = JSON.parse(window.atob(localStorage.getItem("token").split(".")[1]))
                     .roles;
+
+                localStorage.setItem("token", data.result.token);
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("fullName", fullName);
+
+                console.log(verifiedStatus);
+
+                if (verifiedStatus!==true) {
+                    handleOpenSuccess();
+                    return "";
+
+                }
+
                 if (roles.includes("TASKER")) {
                     localStorage.setItem("userRole", "TASKER")
                     window.location.href = "/tasker/create-job";
@@ -165,6 +218,25 @@ const Login = defaultValue => {
                                     </Link>
                                 </p>
                             </div>
+                        <Modal
+
+                            open={openSuccess}
+
+                            onClose={handleSuccessClose}
+
+                            aria-labelledby="modal-modal-title"
+
+                            aria-describedby="modal-modal-description"
+
+                        >
+
+                            <Box sx={style}>
+
+                                <SuccessPopModal myProp={verifyMessage} message={instruction}/>
+
+                            </Box>
+
+                        </Modal>
                         {/*</div>*/}
                     </form>
                 </div>
