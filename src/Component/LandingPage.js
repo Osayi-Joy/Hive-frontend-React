@@ -4,7 +4,7 @@ import HeaderBar from './HeaderBar'
 import { Footer } from './Footer'
 import homeImage from '../Assets/home-image.svg'
 
-//new addition
+//new addition  hive/frontend-mvp/blessing
 const LandingPage = () => {
     return <div className="home-container">
     {/* <HeaderBar /> */}
@@ -17,14 +17,14 @@ const LandingPage = () => {
                 <div className="about-buttons-container">
                     <Link to={'/register'}>
                         <button className="secondary-button">
-                            Sign up as a Doer
+                            Get Started
                         </button>
                     </Link>
-                    <Link to={'/register'}>
-                        <button className="primary-button">
-                            Sign up as a Tasker
-                        </button>
-                    </Link>
+                    {/*<Link to={'/register'}>*/}
+                    {/*    <button className="primary-button">*/}
+                    {/*        Sign up as a Tasker*/}
+                    {/*    </button>*/}
+                    {/*</Link>*/}
                 </div>
                 </div>
             </div>

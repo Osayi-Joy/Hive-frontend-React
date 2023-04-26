@@ -2,14 +2,29 @@ import React from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareEnvelope } from '@fortawesome/free-solid-svg-icons';
+import {useNavigate} from "react-router-dom"
 
 function ResendEmailVerification() {
 
+    let navigate = useNavigate();
+    const token = localStorage.getItem("token");
+
+
+    if (!token) {
+        navigate("/login");
+        console.log("notoken");
+        return null;
+    }
+
     const handleSenderVerificationLink = async () => {
+
         // Call API to send the verification link to the user's email address
         try {
-            const response = await axios.get('/resendVerificationtoken');
+            const response = await axios.get('http://localhost:8080/auth/resendVerificationToken');
+            navigate('/emailVerificationPage')
             console.log(response.data);
+
+
         } catch (error) {
             console.log(error.message);
         }

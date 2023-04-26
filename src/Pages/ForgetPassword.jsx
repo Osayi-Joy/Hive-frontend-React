@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Footer } from "../Component/Footer";
-import HeaderBar from "../Component/HeaderBar";
 import PasswordService from "../service/PasswordService";
 
 
@@ -41,10 +40,9 @@ const ForgetPassword = () => {
 
   return (
     <div className="container">
-      <HeaderBar />
       <div className="auth-wrapper">
-        <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
-          <div className="d-flex flex-column align-content-end">
+        <div className="">
+          <div className="">
             <div className="auth-body">
               <p className="auth-head">Forgot Password</p>
               <p className="auth-description">
@@ -60,7 +58,9 @@ const ForgetPassword = () => {
                 >
                   <div className="email">
                     <p className="form-header">Email</p>
-                    <input
+                    <div className="form-control-div">
+                      <image src="/src/Assets/email.png"></image>
+                      <input
                       type="email"
                       className="form-control"
                       id="email"
@@ -69,6 +69,7 @@ const ForgetPassword = () => {
                       placeholder="Enter your email"
                       onChange={(e) => handleEmailChange(e)}
                     />
+                    </div>
 
                     {validate ? (
                       <p className="isValid">Email is valid</p>
@@ -102,10 +103,11 @@ const ForgetPassword = () => {
           </div>
         </div>
       </div>
-      <div className="footer">
-        <Footer />
-      </div>
+      {/*<div className="footer">*/}
+      {/*<Footer />*/}
+      {/*</div>*/}
     </div>
+
   );
 };
 

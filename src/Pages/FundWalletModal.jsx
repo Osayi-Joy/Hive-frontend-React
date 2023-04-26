@@ -44,13 +44,15 @@ function FundWalletModal(props) {
             });
     };
 
+    const handleModalClose = () => {
+        // Call the onClose callback function passed from parent
+        props.onClose();
+    }
     return (
        <div className="center-modal">
            <div className="payment-modal-payment-modal" style={props.style}>
                <div className="payment-modal-frame-9015x">
                    <p className="payment-modal-text">Fund Wallet</p>
-                   <p className="payment-modal-text-1">
-                       You will be redirected to a page to complete this transaction   </p>
                </div>
                <form className= "payment-modal-frame-8912x"
                      method="POST"
@@ -63,7 +65,7 @@ function FundWalletModal(props) {
                                    <p className="payment-modal-text-3">Enter Amount</p>
                                    <input
                                        type="text"
-                                       className="form-control"
+                                       className="payment-modal-input-1"
                                        id="amount"
                                        name="amount"
                                        placeholder="Amount in Digits"
@@ -77,6 +79,9 @@ function FundWalletModal(props) {
                    <button type="submit" className="payment-modal-button-default">
                        Make Payment via Paystack
                    </button>
+                   <div type="" className="payment-modal-button-default2" onClick={handleModalClose}>
+                       Close
+                   </div>
                </form>
            </div>
        </div>

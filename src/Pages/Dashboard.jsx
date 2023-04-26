@@ -1,9 +1,24 @@
-const dashboard = () => {
+import HeaderBar from "../Component/HeaderBar";
+import SearchBar from "../Component/Dashboard/searchBar"
+import Newpage from "../Component/Dashboard/DashboardJob";
+import '../Component/Dashboard/dashboard.css'
+import {useNavigate} from "react-router-dom";
+
+
+const Dashboard = () => {
+
+    const role = localStorage.getItem("userRole");
+    const navigate = useNavigate();
+
+    if (role === "TASKER") {
+        navigate("/tasker");
+    }
     return <div className="dashboard-container">
-        <div>
-            <h2>welcome to home page</h2>
-        </div>
+        {/*<HeaderBar />*/}
+        <SearchBar />
+        <Newpage />
+        
     </div>
 }
  
-export default dashboard;
+export default Dashboard;

@@ -52,7 +52,7 @@ const Reset = () => {
     <div className="container">
       <HeaderBar />
       <div className="auth-wrapper">
-        <div className="col-12 col-md-7 col-lg-6 auth-main-col text-center">
+        <div className="">
           <div className="d-flex flex-column align-content-end">
             <div className="auth-body">
               <p className="auth-head">Reset Password</p>
@@ -111,9 +111,9 @@ const Reset = () => {
           </div>
         </div>
       </div>
-      <div className="footer">
-        <Footer />
-      </div>
+      {/*<div className="footer">*/}
+      {/*  <Footer />*/}
+      {/*</div>*/}
     </div>
   );
 };

@@ -1,18 +1,67 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquareEnvelope } from '@fortawesome/free-solid-svg-icons';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCheckDouble} from '@fortawesome/free-solid-svg-icons';
+import {Link} from 'react-router-dom';
 
-function EmailVerificationPage() {
+const EmailVerificatonPage = ({token}) => {
+    const verifyToken = new URLSearchParams(window.location.search).get("token");
+    let {verificationStatus, setVerificationStatus} = useState(true);
 
+
+    useEffect(() => {
+        const verifyToken = new URLSearchParams(window.location.search).get("token");
+        if (verifyToken) {
+            axios
+                .get(`http://localhost:8080/auth/verifyRegistration?token=${verifyToken}`)
+                .then((response) => {
+                    console.log("VERIFICATION IN PROGRESS");
+                    if (response.data.isSuccessful === true) {
+                        verificationStatus = true;
+                    }
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                    console.log("VERIFICATION IN error");
+                });
+        }
+    }, []);
+    // useEffect(() => {
+    //
+    //     axios.get()
+
+
+        // const verifyEmail = async () => {
+        //     try {
+        //         console.log("VERIFICATION IN PROGRESS");
+        //         const response = await axios.get(`http://localhost:8080/auth/verifyRegistration?token=${verifyToken}`)
+        //         if (response.data.isSuccessful === true) {
+        //             verificationStatus = true;
+        //         }
+        //     } catch (error) {
+        //         verificationStatus = false;
+        //         console.log("VERIFICATION IN ERRO");
+        //         console.log(verifyToken);
+        //     }
+        // };
+        // verifyEmail();
+    // }, [setVerificationStatus, token]);
     return (
-        <div className='container'>
-            <FontAwesomeIcon icon = {faSquareEnvelope} size="2x" color='green' />
-            <h1>Verify your email</h1>
-            <h2>Hi there, a verification link has been sent to your email.</h2>
-            <h2>Please, verify your email to have full access to Hive</h2>
-            
-        </div>
-    );
-};
 
-export default EmailVerificationPage;
+        <h2>I habddkmkdm dfdkfnmkdfndkfndnfk</h2>
+        // verificationStatus ? (<react className='container'>
+        //     <react className="modal">
+        //         <react className="overlay"></react>
+        //         <react className="modal-content"><h1><FontAwesomeIcon icon={faCheckDouble} color='green'/> Email
+        //             Verification Successful </h1> <h2>{verificationStatus}</h2> <Link to="/login">
+        //             <button>Login</button>
+        //         </Link></react>
+        //     </react>
+        // </react>) : <h2>{verificationStatus}</h2>
+
+    )
+
+
+};
+export default EmailVerificatonPage;
